@@ -63,8 +63,8 @@
 
     <TextView
         android:id="@+id/tvDelta"
-        android:layout_width="115dp"
-        android:layout_height="30dp"
+        android:layout_width="237dp"
+        android:layout_height="35dp"
         android:layout_marginTop="63dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,8 +72,8 @@
 
     <TextView
         android:id="@+id/tvX1"
-        android:layout_width="99dp"
-        android:layout_height="27dp"
+        android:layout_width="235dp"
+        android:layout_height="30dp"
         android:layout_marginBottom="105dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,8 +84,8 @@
 
     <TextView
         android:id="@+id/tvX2"
-        android:layout_width="97dp"
-        android:layout_height="28dp"
+        android:layout_width="233dp"
+        android:layout_height="33dp"
         android:layout_marginBottom="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

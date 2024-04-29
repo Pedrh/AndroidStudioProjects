@@ -74,9 +74,9 @@ public class MainActivity extends AppCompatActivity {
             x2 = x1;
 
             String res2 = getString(R.string.x1) + " " + x1;
-            tvX1.setText(res2);
+            tvX1.setText(String.format(Double.toString(x1)));
             String res3 = getString(R.string.x2) + " " + x2;
-            tvX2.setText(res3);
+            tvX2.setText(String.format(Double.toString(x2)));
         } else if (delta < 0) {
             String msg = getString(R.string.delta_negativo);
             tvDelta.setText(msg);
