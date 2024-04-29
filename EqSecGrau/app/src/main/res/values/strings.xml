@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">EqSecGrau</string>
+    <string name="a">Digite o valor de a</string>
+    <string name="b">Digite o valor de b</string>
+    <string name="c">Digite o valor de c</string>
+    <string name="delta">Delta =</string>
+    <string name="x1">x1 =</string>
+    <string name="x2">x2 =</string>
+    <string name="equacao_invalida">Esta é uma equação inválida</string>
+    <string name="equacao_linear">Esta não é uma equação do 2ºgrau</string>
+    <string name="delta_negativo">A equacao não tem solução real</string>
+    <string name="calcular_raizes">Calcular as raizes</string>
+</resources>
