@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CalculoDeCombustivel</string>
+    <string name="gasolina">Digite o valor da Gasolina</string>
+    <string name="etanol">Digite o valor do Etanol</string>
+    <string name="comparar">Comparar</string>
+    <string name="melhorGasolina">A gasolina compensa mais que etanol</string>
+    <string name="melhorEtanol">O etanol compensa mais que gasolina</string>
+</resources>
