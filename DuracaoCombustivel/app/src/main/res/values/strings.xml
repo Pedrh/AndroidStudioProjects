@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DuracaoCombustivel</string>
+    <string name="consumo">Digite o consumo do carro em km/l</string>
+    <string name="restante">Quantos litros restam</string>
+    <string name="btnCalc">Calcular autonomia</string>
+    <string name="autonomia">A autonomia do veículo é:</string>
+</resources>
