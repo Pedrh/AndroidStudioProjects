@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CalculaIdade</string>
+    <string name="dia">Digite o dia de nascimento</string>
+    <string name="mes">Digite o mês de nascimento</string>
+    <string name="ano">Digite o ano de nascimento</string>
+    <string name="idade">Sua idade é:</string>
+    <string name="btnCalc">Calcular idade</string>
+</resources>
