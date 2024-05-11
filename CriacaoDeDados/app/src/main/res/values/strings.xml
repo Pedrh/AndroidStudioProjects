@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CriacaoDeDados</string>
+    <string name="UmDado">1 dado</string>
+    <string name="DoisDados">2 dados</string>
+    <string name="TresDados">3 dados</string>
+    <string name="gerar">Gerar</string>
+</resources>
