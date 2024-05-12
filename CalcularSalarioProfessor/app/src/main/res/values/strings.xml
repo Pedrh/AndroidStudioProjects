@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">CalcularSalarioProfessor</string>
+    <string name="horista">Horista</string>
+    <string name="titular">Titular</string>
+    <string name="nome">Nome:</string>
+    <string name="idade">Idade</string>
+    <string name="matricula">Matricula</string>
+    <string name="anos_instituicao">Anos de instituição</string>
+    <string name="salario">Salario</string>
+    <string name="horas_aula">Hora Aula</string>
+    <string name="valor_horas_aula">Valor da hora aula</string>
+    <string name="calcular">Calcular</string>
+</resources>
