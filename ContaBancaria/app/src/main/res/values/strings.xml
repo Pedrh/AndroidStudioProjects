@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">ContaBancaria</string>
+    <string name="poupanca">Poupanca</string>
+    <string name="especial">Especial</string>
+    <string name="nomeCliente">*Nome</string>
+    <string name="numConta">*Numero da conta</string>
+    <string name="saldoConta">*Saldo</string>
+    <string name="valor">Valor de op</string>
+    <string name="diaRend">*Dia de rendimento</string>
+    <string name="taxaRend">Taxa de rendimento</string>
+    <string name="limite">*Limite da conta</string>
+    <string name="novoCliente">Novo Cliente</string>
+    <string name="Recalcular">Recalcular saldo</string>
+    <string name="sacar">Sacar</string>
+    <string name="depositar">Depositar</string>
+    <string name="mostrar">Mostrar cliente</string>
+    <string name="depositoFeito">Seu deposito foi feito. Saldo: R$</string>
+    <string name="saqueFeito">Seu saque foi feito. Saldo: R$</string>
+    <string name="recalcFeito">Seu saldo foi recalculado. Saldo: R$</string>
+</resources>
