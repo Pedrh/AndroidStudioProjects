@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     private Button btnRecalcular;
     private Button btnMostrar;
     private Button btnNovoCliente;
-    private ContaFactory contaF;
     private ContaBancaria conta;
 
     @SuppressLint("MissingInflatedId")
@@ -149,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
         ContaBancaria contaB;
 
         if(rbPoupanca.isChecked()){
-            contaF = new ContaPoupancaController();
+            ContaPoupancaController contaF = new ContaPoupancaController();
             contaB =  new ContaPoupanca();
             int diaRend = Integer.parseInt(etDiaRend.getText().toString());
 
@@ -157,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
             contaB = contaF.criarConta(nome, numConta, saldo);
 
         } else{
-            contaF = new ContaEspecialController();
+            ContaEspecialController contaF = new ContaEspecialController();
             contaB = new ContaEspecial();
             float limite = Float.parseFloat(etLimite.getText().toString());
 
