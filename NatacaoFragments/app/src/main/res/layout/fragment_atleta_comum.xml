@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AtletaComumFragment">
+
+    <EditText
+        android:id="@+id/etNomeComum"
+        android:layout_width="153dp"
+        android:layout_height="60dp"
+        android:ems="10"
+        android:hint="@string/nome"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/etBairroComum"
+        app:layout_constraintEnd_toStartOf="@+id/etDataNascComum"
+        app:layout_constraintHorizontal_bias="0.179"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.846" />
+
+    <EditText
+        android:id="@+id/etDataNascComum"
+        android:layout_width="153dp"
+        android:layout_height="66dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="@string/dataNasc"
+        android:importantForAutofill="no"
+        android:inputType="date"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/etRecordeComum"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.569" />
+
+    <EditText
+        android:id="@+id/etAcademiaComum"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginBottom="136dp"
+        android:ems="10"
+        android:hint="@string/academia"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/tvListaComum"
+        app:layout_constraintEnd_toStartOf="@+id/etRecordeComum"
+        app:layout_constraintHorizontal_bias="0.28"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnCadastrarComum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cadastrar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.569" />
+
+    <TextView
+        android:id="@+id/tvListaComum"
+        android:layout_width="313dp"
+        android:layout_height="183dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCadastrarComum" />
+
+    <EditText
+        android:id="@+id/etRecordeComum"
+        android:layout_width="129dp"
+        android:layout_height="66dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="132dp"
+        android:ems="10"
+        android:hint="@string/recorde"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/tvListaComum"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.986" />
+
+    <EditText
+        android:id="@+id/etBairroComum"
+        android:layout_width="222dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="28dp"
+        android:ems="10"
+        android:hint="@string/bairro"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/etAcademiaComum"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
