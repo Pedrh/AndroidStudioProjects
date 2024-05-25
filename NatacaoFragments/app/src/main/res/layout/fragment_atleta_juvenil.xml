@@ -11,8 +11,8 @@
         android:id="@+id/etNomeJuv"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginTop="102dp"
-        android:layout_marginBottom="58dp"
+        android:layout_marginTop="95dp"
+        android:layout_marginBottom="57dp"
         android:ems="10"
         android:hint="@string/nome"
         android:importantForAutofill="no"
@@ -22,21 +22,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/etDataNascJuv"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginBottom="67dp"
-        android:ems="10"
-        android:hint="@string/dataNasc"
-        android:importantForAutofill="no"
-        android:inputType="date"
-        android:textColorHint="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/etBairroJuv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNomeJuv" />
 
     <Button
         android:id="@+id/btnCadastrarJuv"
@@ -60,8 +45,7 @@
         android:inputType="number"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/btnCadastrarJuv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/etBairroJuv"
         app:layout_constraintTop_toBottomOf="@+id/etBairroJuv" />
 
     <EditText
@@ -75,19 +59,32 @@
         android:inputType="text"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/etPraticaJuv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/etDataNascJuv"
         app:layout_constraintTop_toBottomOf="@+id/etDataNascJuv" />
 
     <TextView
         android:id="@+id/tvListaJuv"
         android:layout_width="0dp"
-        android:layout_height="130dp"
+        android:layout_height="0dp"
         android:layout_marginStart="33dp"
         android:layout_marginEnd="33dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnCadastrarJuv" />
+
+    <EditText
+        android:id="@+id/etDataNascJuv"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginBottom="71dp"
+        android:ems="10"
+        android:hint="@string/dataNasc"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/etBairroJuv"
+        app:layout_constraintStart_toStartOf="@+id/etNomeJuv"
+        app:layout_constraintTop_toBottomOf="@+id/etNomeJuv" />
 </androidx.constraintlayout.widget.ConstraintLayout>

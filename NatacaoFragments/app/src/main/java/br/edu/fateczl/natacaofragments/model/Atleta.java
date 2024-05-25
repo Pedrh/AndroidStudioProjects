@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public abstract class Atleta {
     protected String nome;
-    protected LocalDate dataNasc;
+    protected String dataNasc;
     protected String bairro;
 
     public Atleta() {
@@ -21,11 +21,11 @@ public abstract class Atleta {
         this.nome = nome;
     }
 
-    public LocalDate getDataNasc() {
+    public String getDataNasc() {
         return dataNasc;
     }
 
-    public void setDataNasc(LocalDate dataNasc) {
+    public void setDataNasc(String dataNasc) {
         this.dataNasc = dataNasc;
     }
 

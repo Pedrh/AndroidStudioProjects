@@ -55,11 +55,11 @@ public class AtletaSeniorFragment extends Fragment {
         return view;
     }
 
-    @SuppressLint("NewApi")
+
     private void cadastrar() {
         AtletaSenior sen = new AtletaSenior();
         sen.setNome(etNomeSen.getText().toString());
-        sen.setDataNasc(LocalDate.parse(etDataNascSen.getText().toString()));
+        sen.setDataNasc(etDataNascSen.getText().toString());
         sen.setBairro(etBairroSen.getText().toString());
         if(cbCardiacoSen.isChecked()){
             sen.setCardiaco(true);

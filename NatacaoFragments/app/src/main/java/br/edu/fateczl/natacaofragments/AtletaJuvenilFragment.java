@@ -53,11 +53,10 @@ public class AtletaJuvenilFragment extends Fragment {
         return view;
     }
 
-    @SuppressLint("NewApi")
     private void cadastrar() {
         AtletaJuvenil juv = new AtletaJuvenil();
         juv.setNome(etNomeJuv.getText().toString());
-        juv.setDataNasc(LocalDate.parse(etDataNascJuv.getText().toString()));
+        juv.setDataNasc(etDataNascJuv.getText().toString());
         juv.setBairro(etBairroJuv.getText().toString());
         juv.setAnosPratica(Integer.parseInt(etPraticaJuv.getText().toString()));
 

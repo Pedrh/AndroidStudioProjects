@@ -46,8 +46,8 @@ public class AtletaComumFragment extends Fragment {
         etBairroComum = view.findViewById(R.id.etBairroComum);
         etAcademiaComum = view.findViewById(R.id.etAcademiaComum);
         etRecordeComum = view.findViewById(R.id.etRecordeComum);
-        btnCadastrarComum = view.findViewById(R.id.btnCadastrarSen);
-        tvListaComum = view.findViewById(R.id.tvListaSen);
+        btnCadastrarComum = view.findViewById(R.id.btnCadastrarComum);
+        tvListaComum = view.findViewById(R.id.tvListaComum);
         tvListaComum.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
         btnCadastrarComum.setOnClickListener(op -> cadastrar());
@@ -56,11 +56,11 @@ public class AtletaComumFragment extends Fragment {
 
     }
 
-    @SuppressLint("NewApi")
+
     private void cadastrar() {
         AtletaComum comum = new AtletaComum();
         comum.setNome(etNomeComum.getText().toString());
-        comum.setDataNasc(LocalDate.parse(etDataNascComum.getText().toString()));
+        comum.setDataNasc(etDataNascComum.getText().toString());
         comum.setBairro(etBairroComum.getText().toString());
         comum.setAcademia(etAcademiaComum.getText().toString());
         comum.setRecorde(Integer.parseInt(etRecordeComum.getText().toString()));
