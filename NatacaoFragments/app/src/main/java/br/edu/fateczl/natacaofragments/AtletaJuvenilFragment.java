@@ -77,6 +77,6 @@ public class AtletaJuvenilFragment extends Fragment {
         etNomeJuv.setText("");
         etDataNascJuv.setText("");
         etBairroJuv.setText("");
-        etBairroJuv.setText("");
+        etPraticaJuv.setText("");
     }
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cirLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CirculoFragment">
+
+    <EditText
+        android:id="@+id/etRaioCir"
+        android:layout_width="98dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:hint="@string/raio"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        android:textAlignment="center"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/btnPerimetroCir"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.677" />
+
+    <Button
+        android:id="@+id/btnAreaCir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Area"
+        app:layout_constraintBottom_toTopOf="@+id/tvFinalCir"
+        app:layout_constraintEnd_toStartOf="@+id/btnPerimetroCir"
+        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.844" />
+
+    <Button
+        android:id="@+id/btnPerimetroCir"
+        android:layout_width="126dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="52dp"
+        android:text="@string/Perimetro"
+        app:layout_constraintBottom_toTopOf="@+id/tvFinalCir"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.85" />
+
+    <TextView
+        android:id="@+id/tvFinalCir"
+        android:layout_width="169dp"
+        android:layout_height="69dp"
+        android:layout_marginBottom="328dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
