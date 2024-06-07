@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ExemplarFragment">
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="273dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/rbRevistaEx"
+            android:layout_width="142dp"
+            android:layout_height="wrap_content"
+            android:text="@string/revista" />
+
+        <RadioButton
+            android:id="@+id/rbLivroEx"
+            android:layout_width="134dp"
+            android:layout_height="wrap_content"
+            android:text="@string/livro" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/etCodigoEx"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="44dp"
+        android:ems="10"
+        android:hint="@string/codigo"
+        android:inputType="number"
+        android:importantForAutofill="no"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        tools:textColorHint="@color/black" />
+
+    <EditText
+        android:id="@+id/etNomeEx"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="1dp"
+        android:ems="10"
+        android:hint="@string/nome"
+        android:inputType="text"
+        android:importantForAutofill="no"
+        app:layout_constraintEnd_toEndOf="@+id/btnFindOneEx"
+        app:layout_constraintStart_toStartOf="@+id/etCodigoEx"
+        app:layout_constraintTop_toBottomOf="@+id/etCodigoEx"
+        tools:textColorHint="@color/black" />
+
+    <EditText
+        android:id="@+id/etQtdPagsEx"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="@string/qtdPaginas"
+        android:inputType="number"
+        android:importantForAutofill="no"
+        app:layout_constraintEnd_toEndOf="@+id/etEdicaoEx"
+        app:layout_constraintStart_toStartOf="@+id/etIsbnEx"
+        app:layout_constraintTop_toBottomOf="@+id/etNomeEx"
+        tools:textColorHint="@color/black" />
+
+    <EditText
+        android:id="@+id/etIsbnEx"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="@string/isbn"
+        android:inputType="text"
+        android:importantForAutofill="no"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etQtdPagsEx"
+        tools:textColorHint="@color/black" />
+
+    <EditText
+        android:id="@+id/etEdicaoEx"
+        android:layout_width="124dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="@string/edicao"
+        android:inputType="number"
+        android:importantForAutofill="no"
+        app:layout_constraintStart_toEndOf="@+id/etIsbnEx"
+        app:layout_constraintTop_toBottomOf="@+id/etQtdPagsEx"
+        tools:textColorHint="@color/black" />
+
+    <EditText
+        android:id="@+id/etIssnEx"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="14dp"
+        android:ems="10"
+        android:hint="@string/issn"
+        android:inputType="text"
+        android:importantForAutofill="no"
+        app:layout_constraintEnd_toStartOf="@+id/etEdicaoEx"
+        app:layout_constraintStart_toStartOf="@+id/tvFindAllEx"
+        app:layout_constraintTop_toBottomOf="@+id/etIsbnEx"
+        tools:textColorHint="@color/black" />
+
+    <Button
+        android:id="@+id/btnFindOneEx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="49dp"
+        android:text="@string/finOne"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <Button
+        android:id="@+id/btnInsertEx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/insert"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etIssnEx" />
+
+    <Button
+        android:id="@+id/btnUpdateEx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="49dp"
+        android:text="@string/update"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etIssnEx" />
+
+    <Button
+        android:id="@+id/btnDeleteEx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/delete"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnInsertEx" />
+
+    <Button
+        android:id="@+id/btnFindAllEx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/findAll"
+        app:layout_constraintEnd_toEndOf="@+id/btnUpdateEx"
+        app:layout_constraintTop_toBottomOf="@+id/btnUpdateEx" />
+
+    <TextView
+        android:id="@+id/tvFindAllEx"
+        android:layout_width="407dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="36dp"
+        android:scrollbars="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDeleteEx" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

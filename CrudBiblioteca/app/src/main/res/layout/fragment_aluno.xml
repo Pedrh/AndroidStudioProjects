@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentAluno"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AlunoFragment">
+
+    <EditText
+        android:id="@+id/etRaAl"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="62dp"
+        android:ems="10"
+        android:hint="@string/ra"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:textColorHint="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etNomeAl"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="87dp"
+        android:layout_marginBottom="83dp"
+        android:ems="10"
+        android:hint="@string/nome"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/etEmailAl"
+        app:layout_constraintEnd_toEndOf="@+id/btnFindOneAl"
+        app:layout_constraintStart_toStartOf="@+id/etEmailAl"
+        app:layout_constraintTop_toTopOf="@+id/etRaAl" />
+
+    <EditText
+        android:id="@+id/etEmailAl"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="232dp"
+        android:layout_marginEnd="1dp"
+        android:ems="10"
+        android:hint="@string/email"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/btnUpdateAl"
+        app:layout_constraintStart_toStartOf="@+id/etRaAl"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:textColorHint="@color/black" />
+
+    <Button
+        android:id="@+id/btnFindOneAl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="43dp"
+        android:text="@string/finOne"
+        app:layout_constraintBaseline_toBaselineOf="@+id/etRaAl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/etRaAl" />
+
+    <Button
+        android:id="@+id/btnInsertAl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="41dp"
+        android:text="@string/insert"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEmailAl" />
+
+    <Button
+        android:id="@+id/btnUpdateAl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="43dp"
+        android:text="@string/update"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEmailAl" />
+
+    <Button
+        android:id="@+id/btnDeleteAl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="49dp"
+        android:text="@string/delete"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnInsertAl" />
+
+    <Button
+        android:id="@+id/btnFindAllAl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="49dp"
+        android:layout_marginEnd="43dp"
+        android:text="@string/findAll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnUpdateAl" />
+
+    <TextView
+        android:id="@+id/tvFindAllAl"
+        android:layout_width="366dp"
+        android:layout_height="170dp"
+        android:layout_marginBottom="28dp"
+        android:textAlignment="center"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

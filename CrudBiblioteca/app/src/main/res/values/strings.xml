@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">CrudBiblioteca</string>
+    <string name="aluno">Aluno</string>
+    <string name="aluguel">Aluguel</string>
+    <string name="exemplar">Exemplar</string>
+    <string name="livro">Livro</string>
+    <string name="revista">Revista</string>
+    <string name="ra">RA</string>
+    <string name="nome">Nome</string>
+    <string name="email">Email</string>
+    <string name="dataRetirada">Retirada</string>
+    <string name="dataDevolucao">Devolucao</string>
+    <string name="codigo">Codigo</string>
+    <string name="qtdPaginas">Paginas</string>
+    <string name="isbn">ISBN</string>
+    <string name="edicao">Edicao</string>
+    <string name="issn">ISSN</string>
+    <string name="insert">Inserir</string>
+    <string name="update">Atualizar</string>
+    <string name="delete">Deletar</string>
+    <string name="finOne">Buscar</string>
+    <string name="findAll">Listar</string>
+    <string name="inicio">App Biblioteca</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
