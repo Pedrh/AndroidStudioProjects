@@ -49,12 +49,13 @@ public class RevistaDao implements IRevistaDao, ICRUDDao<Revista> {
         ContentValues cvRevista = getCvRevista(revista);
         int ret;
         ret = database.update("Exemplar", cvExemp, "Codigo = " + revista.getCodigo(), null);
-        ret += database.update("Revista", cvRevista, "Codigo = " + revista.getCodigo(), null);
+        ret += database.update("Revista", cvRevista, "ExemplarCodigo = " + revista.getCodigo(), null);
         return ret;
     }
 
     @Override
     public void delete(Revista revista) throws SQLException {
+        database.delete("Revista", "ExemplarCodigo = " + revista.getCodigo(), null);
         database.delete("Exemplar", "Codigo = " + revista.getCodigo(), null);
     }
 
@@ -69,15 +70,16 @@ public class RevistaDao implements IRevistaDao, ICRUDDao<Revista> {
         if(cursor != null){
             cursor.moveToNext();
         }
+        Revista revistaNova = new Revista();
         if(!cursor.isAfterLast()){
-            revista.setCodigo(cursor.getInt(cursor.getColumnIndex("codigo")));
-            revista.setNome(cursor.getString(cursor.getColumnIndex("nome")));
-            revista.setQtdPaginas(cursor.getInt(cursor.getColumnIndex("qtdPaginas")));
-            revista.setIssn(cursor.getString(cursor.getColumnIndex("issn")));
+            revistaNova.setCodigo(cursor.getInt(cursor.getColumnIndex("codigo")));
+            revistaNova.setNome(cursor.getString(cursor.getColumnIndex("nome")));
+            revistaNova.setQtdPaginas(cursor.getInt(cursor.getColumnIndex("qtdPaginas")));
+            revistaNova.setIssn(cursor.getString(cursor.getColumnIndex("issn")));
         }
 
         cursor.close();
-        return revista;
+        return revistaNova;
     }
 
     @SuppressLint("Range")
@@ -100,6 +102,7 @@ public class RevistaDao implements IRevistaDao, ICRUDDao<Revista> {
             revista.setIssn(cursor.getString(cursor.getColumnIndex("issn")));
 
             revistas.add(revista);
+            cursor.moveToNext();
         }
 
         cursor.close();

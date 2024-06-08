@@ -24,12 +24,12 @@ public class GenericDao extends SQLiteOpenHelper {
                     "ExemplarCodigo INT PRIMARY KEY," +
                     "Isbn CHAR(13)," +
                     "Edicao INT(10)," +
-                    "FOREIGN KEY (ExemplarCodigo) REFERENCES Exemplar(Codigo));";
+                    "FOREIGN KEY (ExemplarCodigo) REFERENCES Exemplar(Codigo) ON DELETE CASCADE);";
     public static final String CREATE_TABLE_REVISTA =
             "CREATE TABLE Revista(" +
                     "ExemplarCodigo INT PRIMARY KEY," +
-                    "Issn CHAR(8)" +
-                    "FOREIGN KEY (ExemplarCodigo) REFERENCES Exemplar(Codigo));";
+                    "Issn CHAR(8)," +
+                    "FOREIGN KEY (ExemplarCodigo) REFERENCES Exemplar(Codigo) ON DELETE CASCADE);";
     public static final String CREATE_TABLE_ALUGUEL =
             "CREATE TABLE Aluguel(" +
                     "ExemplarCodigo INT," +
@@ -37,8 +37,8 @@ public class GenericDao extends SQLiteOpenHelper {
                     "dataRetirada VARCHAR(100)," +
                     "dataDevolucao VARCHAR(100)," +
                     "PRIMARY KEY (ExemplarCodigo, AlunoRa, dataRetirada)," +
-                    "FOREIGN KEY (ExemplarCodigo) REFERENCES Exemplar(Codigo)," +
-                    "FOREIGN KEY (AlunoRa) REFERENCES Aluno(Ra));";
+                    "FOREIGN KEY (ExemplarCodigo) REFERENCES Exemplar(Codigo) ON DELETE CASCADE," +
+                    "FOREIGN KEY (AlunoRa) REFERENCES Aluno(Ra) ON DELETE CASCADE);";
 
     public GenericDao(Context context){
         super(context, DATABASE, null, DATABASE_VER);

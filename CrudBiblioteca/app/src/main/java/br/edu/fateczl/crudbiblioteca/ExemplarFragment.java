@@ -123,14 +123,15 @@ public class ExemplarFragment extends Fragment {
 
     private void acaoUpdate() {
         try{
-            if(rbLivroEx.isChecked()){
-                Livro exemplar = montaLivro();
-                lCont.update(exemplar);
-            } else{
-                Revista exemplar = montaRevista();
-                rCont.update(exemplar);
+            Livro exemplarL = montaLivro();
+            if(exemplarL.getIsbn() != null){
+                lCont.update(exemplarL);
+                Toast.makeText(view.getContext(), "Exemplar atualizado com sucesso", Toast.LENGTH_LONG).show();
+            } else {
+                Revista exemplarR = montaRevista();
+                rCont.update(exemplarR);
+                Toast.makeText(view.getContext(), "Exemplar atualizado com sucesso", Toast.LENGTH_LONG).show();
             }
-            Toast.makeText(view.getContext(), "Exemplar atualizado com sucesso", Toast.LENGTH_LONG).show();
         }catch (SQLException e){
             Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
@@ -139,14 +140,17 @@ public class ExemplarFragment extends Fragment {
 
     private void acaodelete() {
         try{
-            if(rbLivroEx.isChecked()){
-                Livro exemplar = montaLivro();
-                lCont.delete(exemplar);
-            } else{
-                Revista exemplar = montaRevista();
-                rCont.delete(exemplar);
+            Livro exemplarL = montaLivro();
+            exemplarL = lCont.findOne(exemplarL);
+            if(exemplarL.getNome() != null){
+                lCont.delete(exemplarL);
+                Toast.makeText(view.getContext(), "Exemplar excluido com sucesso", Toast.LENGTH_LONG).show();
+            } else {
+                Revista exemplarR = montaRevista();
+                exemplarR = rCont.findOne(exemplarR);
+                rCont.delete(exemplarR);
+                Toast.makeText(view.getContext(), "Exemplar excluido com sucesso", Toast.LENGTH_LONG).show();
             }
-            Toast.makeText(view.getContext(), "Exemplar excluido com sucesso", Toast.LENGTH_LONG).show();
         }catch (SQLException e){
             Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
@@ -155,19 +159,18 @@ public class ExemplarFragment extends Fragment {
 
     private void acaoFindOne() {
         try{
-            if(rbLivroEx.isChecked()){
-                Livro exemplar = montaLivro();
-                exemplar = lCont.findOne(exemplar);
-                if(exemplar.getNome() != null){
-                    preencheCampos(exemplar);
-                    Toast.makeText(view.getContext(), "Exemplar não encontrado", Toast.LENGTH_LONG).show();
-                    limpaCampos();
-                }
+            Livro exemplarL = montaLivro();
+            exemplarL = lCont.findOne(exemplarL);
+            if(exemplarL.getNome() != null){
+                rbLivroEx.setChecked(true);
+                preencheLivro(exemplarL);
             } else{
-                Revista exemplar = montaRevista();
-                exemplar = rCont.findOne(exemplar);
-                if(exemplar.getNome() != null){
-                    preencheCampos(exemplar);
+                Revista exemplarR = montaRevista();
+                exemplarR = rCont.findOne(exemplarR);
+                if(exemplarR.getNome() != null){
+                    rbRevistaEx.setChecked(true);
+                    preencheRevista(exemplarR);
+                }  else{
                     Toast.makeText(view.getContext(), "Exemplar não encontrado", Toast.LENGTH_LONG).show();
                     limpaCampos();
                 }
@@ -197,9 +200,17 @@ public class ExemplarFragment extends Fragment {
         Livro ex = new Livro();
         ex.setCodigo(Integer.parseInt(etCodigoEx.getText().toString()));
         ex.setNome(etNomeEx.getText().toString());
-        ex.setQtdPaginas(Integer.parseInt(etQtdPagsEx.getText().toString()));
+        if(etQtdPagsEx.getText().toString().isEmpty()){
+            ex.setQtdPaginas(0);
+        } else{
+            ex.setQtdPaginas(Integer.parseInt(etQtdPagsEx.getText().toString()));
+        }
         ex.setIsbn(etIsbnEx.getText().toString());
-        ex.setEdicao(Integer.parseInt(etEdicaoEx.getText().toString()));
+        if(etEdicaoEx.getText().toString().isEmpty()){
+            ex.setEdicao(0);
+        } else{
+            ex.setEdicao(Integer.parseInt(etEdicaoEx.getText().toString()));
+        }
         return ex;
     }
 
@@ -207,26 +218,28 @@ public class ExemplarFragment extends Fragment {
         Revista ex = new Revista();
         ex.setCodigo(Integer.parseInt(etCodigoEx.getText().toString()));
         ex.setNome(etNomeEx.getText().toString());
-        ex.setQtdPaginas(Integer.parseInt(etQtdPagsEx.getText().toString()));
+        if(etQtdPagsEx.getText().toString().isEmpty()){
+            ex.setQtdPaginas(0);
+        } else{
+            ex.setQtdPaginas(Integer.parseInt(etQtdPagsEx.getText().toString()));
+        }
         ex.setIssn(etIssnEx.getText().toString());
         return ex;
     }
 
-    private void preencheCampos(Exemplar ex){
-        if(rbLivroEx.isChecked()){
-            Livro exAtual = new Livro();
+    private void preencheRevista(Revista exAtual){
             etCodigoEx.setText(String.valueOf(exAtual.getCodigo()));
             etNomeEx.setText(exAtual.getNome());
             etQtdPagsEx.setText(String.valueOf(exAtual.getQtdPaginas()));
-            etIsbnEx.setText(exAtual.getIsbn());
-            etEdicaoEx.setText(String.valueOf(exAtual.getEdicao()));
-        } else{
-            Revista exAtual = new Revista();
-            etCodigoEx.setText(String.valueOf(exAtual.getCodigo()));
-            etNomeEx.setText(exAtual.getNome());
-            etQtdPagsEx.setText(String.valueOf(exAtual.getQtdPaginas()));
-            etIsbnEx.setText(exAtual.getIssn());
-        }
+            etIssnEx.setText(exAtual.getIssn());
+    }
+
+    private void preencheLivro(Livro exAtual){
+        etCodigoEx.setText(String.valueOf(exAtual.getCodigo()));
+        etNomeEx.setText(exAtual.getNome());
+        etQtdPagsEx.setText(String.valueOf(exAtual.getQtdPaginas()));
+        etIsbnEx.setText(exAtual.getIsbn());
+        etEdicaoEx.setText(String.valueOf(exAtual.getEdicao()));
     }
 
     private void limpaCampos(){

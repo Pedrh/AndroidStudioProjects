@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,7 +92,7 @@ public class AluguelFragment extends Fragment {
 
         if(spAlPos > 0){
             if(spExPos > 0){
-                Aluguel aluguel = new Aluguel();
+                Aluguel aluguel = montaAluguel();
                 try {
                     agCont.insert(aluguel);
                     Toast.makeText(view.getContext(), "Aluguel inserido com sucesso", Toast.LENGTH_LONG).show();
@@ -114,7 +115,7 @@ public class AluguelFragment extends Fragment {
 
         if(spAlPos > 0){
             if(spExPos > 0){
-                Aluguel aluguel = new Aluguel();
+                Aluguel aluguel = montaAluguel();
                 try {
                     agCont.update(aluguel);
                     Toast.makeText(view.getContext(), "Aluguel atualizado com sucesso", Toast.LENGTH_LONG).show();
@@ -131,7 +132,7 @@ public class AluguelFragment extends Fragment {
     }
 
     private void acaoDelete() {
-        Aluguel aluguel = new Aluguel();
+        Aluguel aluguel = montaAluguel();
         try {
             agCont.delete(aluguel);
             Toast.makeText(view.getContext(), "Aluguel deletado com sucesso", Toast.LENGTH_LONG).show();
@@ -142,7 +143,7 @@ public class AluguelFragment extends Fragment {
     }
 
     private void acaoFindOne() {
-        Aluguel aluguel = new Aluguel();
+        Aluguel aluguel = montaAluguel();
         try {
             alunos = alCont.findAll();
 

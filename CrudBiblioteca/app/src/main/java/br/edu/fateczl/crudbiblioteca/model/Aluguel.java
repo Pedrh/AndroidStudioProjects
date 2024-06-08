@@ -2,6 +2,8 @@ package br.edu.fateczl.crudbiblioteca.model;
 
 import androidx.annotation.NonNull;
 
+import java.time.LocalDate;
+
 public class Aluguel {
     private Aluno aluno;
     private Exemplar exemplar;

@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,14 +46,19 @@ public class AluguelDao implements IAluguelDao, ICRUDDao<Aluguel> {
 
     @Override
     public int update(Aluguel aluguel) throws SQLException {
+        String whereClause = "dataRetirada = ?";
+        String[] whereArgs = {aluguel.getDataRetirada()};
+
         ContentValues contentValues = getContentValues(aluguel);
-        int ret = database.update("Aluguel", contentValues, "dataRetirada = " + aluguel.getDataRetirada(), null);
+        int ret = database.update("Aluguel", contentValues, whereClause, whereArgs);
         return ret;
     }
 
     @Override
     public void delete(Aluguel aluguel) throws SQLException {
-        database.delete("Aluguel", "dataRetirada = " + aluguel.getDataRetirada(), null);
+        String whereClause = "dataRetirada = ?";
+        String[] whereArgs = {aluguel.getDataRetirada()};
+        database.delete("Aluguel", whereClause, whereArgs);
     }
 
     @SuppressLint("Range")
@@ -63,9 +69,10 @@ public class AluguelDao implements IAluguelDao, ICRUDDao<Aluguel> {
                         "e.Codigo as codigo, e.Nome as nomeEx, e.qtdPaginas as qtdPaginas, " +
                         "al.Ra as ra, al.Nome as nomeAl, al.Email as email, " +
                         "ag.dataRetirada as dataRetirada, ag.dataDevolucao as dataDevolucao " +
-                        "FROM Exemplar e INNER JOIN Aluguel al on e.Codigo = ag.ExemplarCodigo " +
-                        "INNER JOIN Aluno al on al.Ra = ag.AlunoRa AND dataRetirada = " + aluguel.getDataRetirada();
-        Cursor cursor = database.rawQuery(sql, null);
+                        "FROM Exemplar e INNER JOIN Aluguel ag on e.Codigo = ag.ExemplarCodigo " +
+                        "INNER JOIN Aluno al on al.Ra = ag.AlunoRa AND ag.dataRetirada = ?";
+        String[] whereArgs = {aluguel.getDataRetirada()};
+        Cursor cursor = database.rawQuery(sql, whereArgs);
         if(cursor != null){
             cursor.moveToNext();
         }
@@ -100,7 +107,7 @@ public class AluguelDao implements IAluguelDao, ICRUDDao<Aluguel> {
                         "e.Codigo as codigo, e.Nome as nomeEx, e.qtdPaginas as qtdPaginas, " +
                         "al.Ra as ra, al.Nome as nomeAl, al.Email as email, " +
                         "ag.dataRetirada as dataRetirada, ag.dataDevolucao as dataDevolucao " +
-                        "FROM Exemplar e INNER JOIN Aluguel al on e.Codigo = ag.ExemplarCodigo " +
+                        "FROM Exemplar e INNER JOIN Aluguel ag on e.Codigo = ag.ExemplarCodigo " +
                         "INNER JOIN Aluno al on al.Ra = ag.AlunoRa";
         Cursor cursor = database.rawQuery(sql, null);
         if(cursor != null){
@@ -136,8 +143,8 @@ public class AluguelDao implements IAluguelDao, ICRUDDao<Aluguel> {
         ContentValues contentValues = new ContentValues();
         contentValues.put("ExemplarCodigo", aluguel.getExemplar().getCodigo());
         contentValues.put("AlunoRa", aluguel.getAluno().getRa());
-        contentValues.put("dataRetirada", aluguel.getDataRetirada());
-        contentValues.put("dataDevolucao", aluguel.getDataDevolucao());
+        contentValues.put("dataRetirada", aluguel.getDataRetirada().toString());
+        contentValues.put("dataDevolucao", aluguel.getDataDevolucao().toString());
 
         return contentValues;
 

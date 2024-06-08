@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
         if(bundle != null){
             carregaFragment(bundle);
         } else {
-            FragmentManager supportFragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = supportFragmentManager.beginTransaction();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.fragment, new InicioFragment());
             fragmentTransaction.commit();
         }
@@ -53,8 +53,9 @@ public class MainActivity extends AppCompatActivity {
         if(tipo.equals("aluguel")){
             fragment = new AluguelFragment();
         }
-        FragmentManager supportFragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = supportFragmentManager.beginTransaction();
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment, fragment);
         fragmentTransaction.commit();
     }

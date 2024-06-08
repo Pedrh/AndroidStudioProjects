@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.edu.fateczl.crudbiblioteca.model.Aluguel;
 import br.edu.fateczl.crudbiblioteca.model.Livro;
 
 public class LivroDao implements ILivroDao, ICRUDDao<Livro> {
@@ -50,12 +49,13 @@ public class LivroDao implements ILivroDao, ICRUDDao<Livro> {
         ContentValues cvLivro = getCvLivro(livro);
         int ret;
         ret = database.update("Exemplar", cvExemp, "Codigo = " + livro.getCodigo(), null);
-        ret += database.update("Livro", cvLivro, "Codigo = " + livro.getCodigo(), null);
+        ret += database.update("Livro", cvLivro, "ExemplarCodigo = " + livro.getCodigo(), null);
         return ret;
     }
 
     @Override
     public void delete(Livro livro) throws SQLException {
+        database.delete("Livro", "ExemplarCodigo = " + livro.getCodigo(), null);
         database.delete("Exemplar", "Codigo = " + livro.getCodigo(), null);
     }
 
@@ -72,15 +72,16 @@ public class LivroDao implements ILivroDao, ICRUDDao<Livro> {
             cursor.moveToNext();
         }
 
+        Livro livroNovo = new Livro();
         if(!cursor.isAfterLast()){
-            livro.setCodigo(cursor.getInt(cursor.getColumnIndex("codigo")));
-            livro.setNome(cursor.getString(cursor.getColumnIndex("nome")));
-            livro.setQtdPaginas(cursor.getInt(cursor.getColumnIndex("qtdPaginas")));
-            livro.setIsbn(cursor.getString(cursor.getColumnIndex("isbn")));
-            livro.setEdicao(cursor.getInt(cursor.getColumnIndex("edicao")));
+            livroNovo.setCodigo(cursor.getInt(cursor.getColumnIndex("codigo")));
+            livroNovo.setNome(cursor.getString(cursor.getColumnIndex("nome")));
+            livroNovo.setQtdPaginas(cursor.getInt(cursor.getColumnIndex("qtdPaginas")));
+            livroNovo.setIsbn(cursor.getString(cursor.getColumnIndex("isbn")));
+            livroNovo.setEdicao(cursor.getInt(cursor.getColumnIndex("edicao")));
         }
         cursor.close();
-        return livro;
+        return livroNovo;
     }
 
     @SuppressLint("Range")
