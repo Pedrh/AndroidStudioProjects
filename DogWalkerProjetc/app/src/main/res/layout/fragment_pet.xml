@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentPet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PetFragment">
+
+    <EditText
+        android:id="@+id/etIdPet"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="@string/id"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:textColorHint="@color/black" />
+
+    <EditText
+        android:id="@+id/etNomePet"
+        android:layout_width="356dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/nome"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.246"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etIdPet"
+        tools:textColorHint="@color/black" />
+
+    <EditText
+        android:id="@+id/etRacaPet"
+        android:layout_width="356dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/raca"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.246"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNomePet"
+        tools:textColorHint="@color/black" />
+
+    <Spinner
+        android:id="@+id/spDonoPet"
+        android:layout_width="356dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.309"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+
+    <TextView
+        android:id="@+id/tvPortePet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:text="@string/porte"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/spDonoPet"
+        app:layout_constraintEnd_toStartOf="@+id/radioGroup2"
+        app:layout_constraintHorizontal_bias="0.64"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvIdadePet"
+        app:layout_constraintVertical_bias="0.066" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup2"
+        android:layout_width="328dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="60dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.939"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+
+        <RadioButton
+            android:id="@+id/rbPequenoPet"
+            android:layout_width="115dp"
+            android:layout_height="match_parent"
+            android:text="@string/pequeno" />
+
+        <RadioButton
+            android:id="@+id/rbMedioPet"
+            android:layout_width="98dp"
+            android:layout_height="match_parent"
+            android:text="@string/medio" />
+
+        <RadioButton
+            android:id="@+id/rbGrandePet"
+            android:layout_width="101dp"
+            android:layout_height="match_parent"
+            android:text="@string/grande" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnDeletePet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#B7F86C6C"
+        android:text="@string/delete"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/tvFindAllPet"
+        app:layout_constraintEnd_toStartOf="@+id/btnFindAllPet"
+        app:layout_constraintHorizontal_bias="0.073"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnInsertPet"
+        app:layout_constraintVertical_bias="0.111" />
+
+    <Button
+        android:id="@+id/btnFindAllPet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#B7F86C6C"
+        android:text="@string/findAll"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.882"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnUpdatePet"
+        app:layout_constraintVertical_bias="0.157" />
+
+    <Button
+        android:id="@+id/btnInsertPet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#B7F86C6C"
+        android:text="@string/insert"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/btnUpdatePet"
+        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spDonoPet" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="333dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etRacaPet">
+
+        <RadioButton
+            android:id="@+id/rbFilhotePet"
+            android:layout_width="106dp"
+            android:layout_height="match_parent"
+            android:text="@string/filhote" />
+
+        <RadioButton
+            android:id="@+id/rbAdultoPet"
+            android:layout_width="107dp"
+            android:layout_height="match_parent"
+            android:text="@string/adulto" />
+
+        <RadioButton
+            android:id="@+id/rbSeniorPet"
+            android:layout_width="94dp"
+            android:layout_height="wrap_content"
+            android:text="@string/senior" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tvIdadePet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/idade"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/radioGroup"
+        app:layout_constraintHorizontal_bias="0.608"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etRacaPet" />
+
+    <Button
+        android:id="@+id/btnUpdatePet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#B7F86C6C"
+        android:text="@string/update"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spDonoPet" />
+
+    <TextView
+        android:id="@+id/tvFindAllPet"
+        android:layout_width="361dp"
+        android:layout_height="107dp"
+        android:layout_marginTop="16dp"
+        android:textAlignment="center"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnFindAllPet" />
+
+    <Button
+        android:id="@+id/btnFindOnePet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#B7F86C6C"
+        android:text="@string/findOne"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.554"
+        app:layout_constraintStart_toEndOf="@+id/etIdPet"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item_Dono"
+        android:title="@string/dono" />
+    <item
+        android:id="@+id/item_Pet"
+        android:title="@string/pet" />
+    <item
+        android:id="@+id/item_agendamento"
+        android:title="@string/agendar" />
+</menu>

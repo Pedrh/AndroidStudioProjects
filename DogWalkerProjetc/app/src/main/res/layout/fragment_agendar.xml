@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentAgendar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AgendarFragment">
+
+    <RadioGroup
+        android:id="@+id/radioGroup6"
+        android:layout_width="273dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNomePet3Ag">
+
+        <RadioButton
+            android:id="@+id/rbTrintaMinAg"
+            android:layout_width="94dp"
+            android:layout_height="wrap_content"
+            android:text="@string/trintaMin" />
+
+        <RadioButton
+            android:id="@+id/rbUmaHoraAg"
+            android:layout_width="77dp"
+            android:layout_height="wrap_content"
+            android:text="@string/umaHora" />
+
+        <RadioButton
+            android:id="@+id/rbDuasHorasAg"
+            android:layout_width="74dp"
+            android:layout_height="wrap_content"
+            android:text="@string/duasHoras" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnCalcValorAg"
+        android:layout_width="162dp"
+        android:layout_height="73dp"
+        android:backgroundTint="#B7F86C6C"
+        android:text="@string/calcVal"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etHoraAg"
+        app:layout_constraintVertical_bias="0.415" />
+
+    <TextView
+        android:id="@+id/tvPagamentoAg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/pagamento"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/radioGroup7"
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTempoPasseioAg" />
+
+    <Button
+        android:id="@+id/btnConfirmaAg"
+        android:layout_width="145dp"
+        android:layout_height="73dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#B7F86C6C"
+        android:text="@string/confirma"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.442"
+        app:layout_constraintStart_toEndOf="@+id/btnCalcValorAg"
+        app:layout_constraintTop_toBottomOf="@+id/etHoraAg"
+        app:layout_constraintVertical_bias="0.111" />
+
+    <TextView
+        android:id="@+id/tvValorAg"
+        android:layout_width="142dp"
+        android:layout_height="186dp"
+        android:scrollbars="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.264"
+        app:layout_constraintStart_toEndOf="@+id/etNomePet2Ag"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup3" />
+
+    <TextView
+        android:id="@+id/tvTempoPasseioAg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/tempoPasseio"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/radioGroup6"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNomePet3Ag" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup7"
+        android:layout_width="273dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup6">
+
+        <RadioButton
+            android:id="@+id/rbDinheiroAg"
+            android:layout_width="98dp"
+            android:layout_height="wrap_content"
+            android:text="@string/dinheiro" />
+
+        <RadioButton
+            android:id="@+id/rbCartaoAg"
+            android:layout_width="97dp"
+            android:layout_height="wrap_content"
+            android:text="@string/cartao" />
+
+        <RadioButton
+            android:id="@+id/rbPixAg"
+            android:layout_width="71dp"
+            android:layout_height="wrap_content"
+            android:text="@string/pix" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/etHoraAg"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/horaEncontro"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etDataAg"
+        tools:textColorHint="@color/black" />
+
+    <EditText
+        android:id="@+id/etLocalAg"
+        android:layout_width="356dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:hint="@string/localEncontro"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.29"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup7"
+        tools:textColorHint="@color/black" />
+
+    <EditText
+        android:id="@+id/etDataAg"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="@string/dataPasseio"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etLocalAg"
+        tools:textColorHint="@color/black" />
+
+    <TextView
+        android:id="@+id/tvPassearComAg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="4dp"
+        android:text="@string/passearCom"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/radioGroup3"
+        app:layout_constraintHorizontal_bias="0.941"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup3"
+        android:layout_width="273dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="28dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/rbUmpetAg"
+            android:layout_width="83dp"
+            android:layout_height="match_parent"
+            android:text="@string/pet1" />
+
+        <RadioButton
+            android:id="@+id/rbDoisPetsAg"
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:text="@string/pet2" />
+
+        <RadioButton
+            android:id="@+id/rbTresPetsAg"
+            android:layout_width="88dp"
+            android:layout_height="match_parent"
+            android:text="@string/pet3" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/etNomePet1Ag"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="@string/nome"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPassearComAg"
+        tools:textColorHint="@color/black" />
+
+    <EditText
+        android:id="@+id/etNomePet2Ag"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="@string/nome"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNomePet1Ag" />
+
+    <EditText
+        android:id="@+id/etNomePet3Ag"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="@string/nome"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNomePet2Ag" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

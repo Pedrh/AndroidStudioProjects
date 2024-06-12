@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">DogWalkerProjetc</string>
+    /*Criação do dono*/
+    <string name="dono">Dono</string>
+    <string name="cpf">CPF</string>
+    <string name="nome">Nome</string>
+    <string name="cep">CEP</string>
+    <string name="email">Email</string>
+    <string name="telefone">Telefone</string>
+
+    /*Criação do pet (ele também tem nome)*/
+    <string name="pet">Pet</string>
+    <string name="id">Id</string>
+    <string name="raca">Raça</string>
+    <string name="idade">Idade:</string>
+    <string name="filhote">Filhote</string>
+    <string name="adulto">Adulto</string>
+    <string name="senior">Senior</string>
+    <string name="porte">Porte:</string>
+    <string name="pequeno">Pequeno</string>
+    <string name="medio">Medio</string>
+    <string name="grande">Grande</string>
+
+    /*Parte do CRUD e operacao de agendamento de passeio*/
+    <string name="insert">Inserir</string>
+    <string name="update">Atualizar</string>
+    <string name="delete">Deletar</string>
+    <string name="findOne">Buscar</string>
+    <string name="findAll">Listar</string>
+    <string name="showOne">Mostrar</string>
+
+    <string name="agendar">Agendar</string>
+    <string name="endereco">Endereco de encontro</string>
+    <string name="passearCom">Passear com</string>
+    <string name="pet1">1 pet</string>
+    <string name="pet2">2 pets</string>
+    <string name="pet3">3 pets</string>
+    <string name="tempoPasseio">Passear por</string>
+    <string name="trintaMin">30min</string>
+    <string name="umaHora">1H</string>
+    <string name="duasHoras">2H</string>
+    <string name="pagamento">Pagamento</string>
+    <string name="dinheiro">Dinheiro</string>
+    <string name="pix">Pix</string>
+    <string name="cartao">Cartao</string>
+    <string name="dataPasseio">Data do passeio</string>
+    <string name="localEncontro">Local de encontro</string>
+    <string name="horaEncontro">Horario do encontro</string>
+    <string name="calcVal">Calcular Valor do passeio</string>
+    <string name="confirma">Confirmar Passeio</string>
+
+
+    <string name="inicio">Bem vindo ao Walk my Dog</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

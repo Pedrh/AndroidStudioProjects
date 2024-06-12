@@ -56,11 +56,11 @@ public class AlunoDao implements IAlunoDao, ICRUDDao<Aluno> {
     @Override
     public Aluno findOne(Aluno aluno) throws SQLException {
         String sql= "SELECT Ra, Nome, Email FROM aluno WHERE Ra = " + aluno.getRa();
-        Cursor cursor = database.rawQuery(sql, null);
-        if(cursor != null){
-            cursor.moveToNext();
-        }
-        if(!cursor.isAfterLast()){
+            Cursor cursor = database.rawQuery(sql, null);
+            if(cursor != null){
+                cursor.moveToNext();
+            }
+            if(!cursor.isAfterLast()){
             aluno.setRa(cursor.getInt(cursor.getColumnIndex("Ra")));
             aluno.setNome(cursor.getString(cursor.getColumnIndex("Nome")));
             aluno.setEmail(cursor.getString(cursor.getColumnIndex("Email")));
@@ -92,7 +92,7 @@ public class AlunoDao implements IAlunoDao, ICRUDDao<Aluno> {
     }
 
     private static ContentValues getContentValues(Aluno aluno) {
-        ContentValues contentValues = new ContentValues();
+            ContentValues contentValues = new ContentValues();
         contentValues.put("ra", aluno.getRa());
         contentValues.put("nome", aluno.getNome());
         contentValues.put("email", aluno.getEmail());
