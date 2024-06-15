@@ -27,6 +27,7 @@
     <string name="delete">Deletar</string>
     <string name="findOne">Buscar</string>
     <string name="findAll">Listar</string>
+    <string name="showPets">Mostrar meus pets</string>
     <string name="showOne">Mostrar</string>
 
     <string name="agendar">Agendar</string>
@@ -48,6 +49,8 @@
     <string name="horaEncontro">Horario do encontro</string>
     <string name="calcVal">Calcular Valor do passeio</string>
     <string name="confirma">Confirmar Passeio</string>
+    <string name="cancelar">Cancelar Passeio</string>
+
 
 
     <string name="inicio">Bem vindo ao Walk my Dog</string>

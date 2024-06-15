@@ -62,7 +62,8 @@ public class DonoDao implements ICRUDDao<Dono>, IDonoDao {
     @SuppressLint("Range")
     @Override
     public Dono findOne(Dono dono) throws SQLException  {
-        String sql = "SELECT nome, cpf, cep, telefone, email FROM Dono WHERE CodigoUsuario = 1";
+        String sql = "SELECT u.nome as nome, u.telefone as telefone, d.cep as cep, d.email as email FROM Dono d INNER JOIN Usuario u" +
+                " ON u.codigo = d.CodigoUsuario AND d.CodigoUsuario = 1";
         Cursor cursor = database.rawQuery(sql, null);
         if(cursor != null){
             cursor.moveToNext();
@@ -70,7 +71,7 @@ public class DonoDao implements ICRUDDao<Dono>, IDonoDao {
         if(!cursor.isAfterLast()){
             dono.setNome(cursor.getString(cursor.getColumnIndex("nome")));
             dono.setCep(cursor.getInt(cursor.getColumnIndex("cep")));
-            dono.setTelefone(cursor.getInt(cursor.getColumnIndex("telefone")));
+            dono.setTelefone(cursor.getString(cursor.getColumnIndex("telefone")));
             dono.setEmail(cursor.getString(cursor.getColumnIndex("email")));
         }
         cursor.close();
@@ -89,7 +90,6 @@ public class DonoDao implements ICRUDDao<Dono>, IDonoDao {
     private ContentValues getCvDono(Dono dono){
         ContentValues contentValues = new ContentValues();
         contentValues.put("CodigoUsuario", 1);
-        contentValues.put("Cpf", dono.getCpf());
         contentValues.put("Cep", dono.getCep());
         contentValues.put("Email", dono.getEmail());
 

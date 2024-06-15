@@ -11,13 +11,13 @@ public class GenericDao extends SQLiteOpenHelper {
             "CREATE TABLE Usuario(" +
                     "Nome VARCHAR(100)," +
                     "Codigo INT(10) PRIMARY KEY," +
-                    "Telefone INT(10));";
+                    "Telefone VARCHAR(80));";
     private static final String CREATE_DONO =
             "CREATE TABLE Dono(" +
                     "CodigoUsuario INT(10),"+
                     "Cep INT(10)," +
                     "Email VARCHAR(100)," +
-                    "PRIMARY KEY (CodigoUsuario, Cpf)," +
+                    "PRIMARY KEY (CodigoUsuario)," +
                     "FOREIGN KEY (CodigoUsuario) REFERENCES Usuario(Codigo) ON DELETE CASCADE);";
     private static final String CREATE_WALKER =
             "CREATE TABLE Walker(" +
@@ -28,12 +28,13 @@ public class GenericDao extends SQLiteOpenHelper {
             "CREATE TABLE Pet(" +
                     "Nome VARCHAR(100)," +
                     "id INT(10) PRIMARY KEY," +
+                    "CodigoDono INT(10)," +
                     "raca VARCHAR(80)," +
                     "porte VARCHAR(80)," +
                     "idade VARCHAR(80)," +
-                    "FOREIGN KEY (Cpf) REFERENCES Dono(Cpf));";
+                    "FOREIGN KEY (CodigoDono) REFERENCES Dono(CodigoUsuario) ON DELETE CASCADE);";
     private static final String CREATE_AGENDAMENTO =
-            "CREATE TABLE Pet(" +
+            "CREATE TABLE Agendamento(" +
                     "CodigoDono INT(10)," +
                     "CodigoWalker INT(10)," +
                     "DataEncontro VARCHAR(100) PRIMARY KEY," +
@@ -42,8 +43,8 @@ public class GenericDao extends SQLiteOpenHelper {
                     "QtdPasseio INT(10),"+
                     "TempoPasseio INT(10),"+
                     "FormaPagto VARCHAR(80),"+
-                    "FOREIGN KEY (CodigoDono) REFERENCES Dono(CodigoUsuario)," +
-                    "FOREIGN KEY (CodigoWalker) REFERENCES Walker(CodigoUsuario));";
+                    "FOREIGN KEY (CodigoDono) REFERENCES Dono(CodigoUsuario) ON DELETE CASCADE," +
+                    "FOREIGN KEY (CodigoWalker) REFERENCES Walker(CodigoUsuario) ON DELETE CASCADE);";
     public GenericDao(Context context){
         super(context, DATABASE, null, DATABASE_VER);
     }

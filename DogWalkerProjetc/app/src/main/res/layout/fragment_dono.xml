@@ -7,11 +7,34 @@
     android:layout_height="match_parent"
     tools:context=".DonoFragment">
 
+    <Button
+        android:id="@+id/btnUpdateDono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#B7F86C6C"
+        android:text="@string/update"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.832"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEmailDono" />
+
+    <TextView
+        android:id="@+id/tvCadastradoDono"
+        android:layout_width="251dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="168dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/etNomeDono"
         android:layout_width="356dp"
         android:layout_height="48dp"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="240dp"
         android:ems="10"
         android:hint="@string/nome"
         android:importantForAutofill="no"
@@ -26,7 +49,7 @@
         android:id="@+id/etCEPDono"
         android:layout_width="356dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="@string/cep"
         android:importantForAutofill="no"
@@ -38,25 +61,10 @@
         tools:textColorHint="@color/black" />
 
     <EditText
-        android:id="@+id/etFoneDono"
-        android:layout_width="356dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:hint="@string/telefone"
-        android:importantForAutofill="no"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.29"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCEPDono"
-        tools:textColorHint="@color/black" />
-
-    <EditText
         android:id="@+id/etEmailDono"
         android:layout_width="356dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="88dp"
         android:ems="10"
         android:hint="@string/email"
         android:importantForAutofill="no"
@@ -64,73 +72,49 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.29"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etFoneDono"
+        app:layout_constraintTop_toBottomOf="@+id/etCEPDono"
         tools:textColorHint="@color/black" />
-
-    <TextView
-        android:id="@+id/tvFindOneDono"
-        android:layout_width="355dp"
-        android:layout_height="130dp"
-        android:scrollbars="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.392"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnDeleteDono"
-        app:layout_constraintVertical_bias="0.506" />
 
     <Button
         android:id="@+id/btnInsertDono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#B7F86C6C"
         android:text="@string/insert"
         android:textColor="@color/black"
         app:layout_constraintEnd_toStartOf="@+id/btnUpdateDono"
-        app:layout_constraintHorizontal_bias="0.124"
+        app:layout_constraintHorizontal_bias="0.321"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etEmailDono" />
-
-    <Button
-        android:id="@+id/btnUpdateDono"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="#B7F86C6C"
-        android:text="@string/update"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.878"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEmailDono" />
-
-    <Button
-        android:id="@+id/btnDeleteDono"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:backgroundTint="#B7F86C6C"
-        android:text="@string/delete"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toStartOf="@+id/btnFindOneDono"
-        app:layout_constraintHorizontal_bias="0.114"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnInsertDono" />
 
     <Button
         android:id="@+id/btnFindOneDono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="40dp"
         android:backgroundTint="#B7F86C6C"
         android:text="@string/showOne"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/tvFindOneDono"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.888"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnUpdateDono"
-        app:layout_constraintVertical_bias="0.03" />
+        app:layout_constraintTop_toBottomOf="@+id/btnUpdateDono" />
+
+    <EditText
+        android:id="@+id/etFoneDono"
+        android:layout_width="356dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:hint="@string/telefone"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/etEmailDono"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.29"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCEPDono"
+        app:layout_constraintVertical_bias="0.414"
+        tools:textColorHint="@color/black" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

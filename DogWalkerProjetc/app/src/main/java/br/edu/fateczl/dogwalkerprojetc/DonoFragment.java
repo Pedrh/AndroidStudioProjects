@@ -11,13 +11,21 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.sql.SQLException;
+
+import br.edu.fateczl.dogwalkerprojetc.controller.DonoController;
+import br.edu.fateczl.dogwalkerprojetc.model.Dono;
+import br.edu.fateczl.dogwalkerprojetc.persistence.DonoDao;
 
 public class DonoFragment extends Fragment {
 
     private View view;
     private EditText etNomeDono, etCEPDono, etFoneDono, etEmailDono;
-    private Button btnInsertDono, btnUpdateDono, btnDeleteDono, btnFindOneDono;
-    private TextView tvFindOneDono;
+    private Button btnInsertDono, btnUpdateDono, btnFindOneDono;
+    private TextView tvCadastradoDono;
+    private DonoController dCont;
 
     public DonoFragment() {
         super();
@@ -35,11 +43,100 @@ public class DonoFragment extends Fragment {
         etEmailDono = view.findViewById(R.id.etEmailDono);
         btnInsertDono = view.findViewById(R.id.btnInsertDono);
         btnUpdateDono = view.findViewById(R.id.btnUpdateDono);
-        btnDeleteDono = view.findViewById(R.id.btnDeleteDono);
         btnFindOneDono = view.findViewById(R.id.btnFindOneDono);
-        tvFindOneDono = view.findViewById(R.id.tvFindOneDono);
-        tvFindOneDono.setMovementMethod(new ScrollingMovementMethod());
+        tvCadastradoDono = view.findViewById(R.id.tvCadastradoDono);
+        identificarCadastro();
 
+        dCont = new DonoController(new DonoDao(view.getContext()));
+
+        btnInsertDono.setOnClickListener(op -> acaoInsert());
+        btnUpdateDono.setOnClickListener(op -> acaoUpdate());
+        btnFindOneDono.setOnClickListener(op -> acaoFindOne());
         return view;
     }
+
+    private void identificarCadastro() {
+        Dono dono = montaDono();
+        String msg = "";
+        if(dono.getNome() != null){
+            msg = "Usuário logado";
+        } else{
+            msg = "Usuário não cadastrado";
+        }
+        tvCadastradoDono.setText(msg);
+    }
+
+    private void acaoInsert() {
+        Dono dono = montaDono();
+        try{
+            if(tvCadastradoDono.getText().toString().contains("cadastrado")){
+                dCont.insert(dono);
+                Toast.makeText(view.getContext(), "Usuário efetuou cadastro", Toast.LENGTH_LONG).show();
+                tvCadastradoDono.setText("Usuário logado");
+            } else {
+                acaoUpdate();
+            }
+        } catch (SQLException e) {
+            Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+        limpaCampos();
+    }
+
+    private void acaoUpdate() {
+        Dono dono = montaDono();
+        try{
+            if(tvCadastradoDono.getText().toString().contains("cadastrado")){
+               acaoInsert();
+            } else {
+                dCont.update(dono);
+                Toast.makeText(view.getContext(), "Usuário atualizado com sucesso", Toast.LENGTH_LONG).show();
+            }
+        } catch (SQLException e) {
+            Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+        limpaCampos();
+    }
+
+    private void acaoFindOne() {
+        Dono dono = montaDono();
+        try{
+            dono = dCont.findOne(dono);
+            preencheCampos(dono);
+        } catch (SQLException e) {
+            Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            limpaCampos();
+        }
+    }
+
+    private Dono montaDono(){
+        Dono d = new Dono();
+        d.setNome(etNomeDono.getText().toString());
+        d.setEmail(etEmailDono.getText().toString());
+        if(etCEPDono.getText().toString().isEmpty()){
+            d.setCep(0);
+        } else{
+            d.setCep(Integer.parseInt(etCEPDono.getText().toString()));
+        }
+        d.setTelefone(etFoneDono.getText().toString());
+        d.setCodigo(1);
+
+        return d;
+    }
+
+    private void preencheCampos(Dono d){
+        etNomeDono.setText(d.getNome());
+        etEmailDono.setText(d.getEmail());
+        etCEPDono.setText(String.valueOf(d.getCep()));
+        etFoneDono.setText(String.valueOf(d.getTelefone()));
+    }
+
+    private void limpaCampos(){
+        etNomeDono.setText("");
+        etEmailDono.setText("");
+        etCEPDono.setText("");
+        etFoneDono.setText("");
+    }
+
+
+
 }

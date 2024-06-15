@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 public abstract class  Usuario {
     protected String nome;
     protected int codigo;
-    protected int telefone;
+    protected String telefone;
 
     public Usuario() {
         super();
@@ -28,11 +28,11 @@ public abstract class  Usuario {
     }
 
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 

@@ -19,7 +19,7 @@ public class AgendarFragment extends Fragment {
     private View view;
     private EditText etLocalAg, etHoraAg, etDataAg, etNomePet1Ag, etNomePet2Ag, etNomePet3Ag;
     private RadioButton rbUmPetAg,rbDoisPetsAg, rbTresPetsAg, rbTrintaMinAg, rbUmaHora, rbDuasHoras, rbDinheiroAg, rbCartaoAg, rbPixAg;
-    private Button btnCalcValorAg, btnConfirmaAg;
+    private Button btnCalcValorAg, btnConfirmaAg, btnCancelarAg;
     private TextView tvValorAg;
 
     public AgendarFragment() {
@@ -49,6 +49,7 @@ public class AgendarFragment extends Fragment {
         etNomePet3Ag = view.findViewById(R.id.etNomePet3Ag);
         btnCalcValorAg = view.findViewById(R.id.btnCalcValorAg);
         btnConfirmaAg = view.findViewById(R.id.btnConfirmaAg);
+        btnCancelarAg = view.findViewById(R.id.btnCancelarAg);
         tvValorAg = view.findViewById(R.id.tvValorAg);
         tvValorAg.setMovementMethod(new ScrollingMovementMethod());
 

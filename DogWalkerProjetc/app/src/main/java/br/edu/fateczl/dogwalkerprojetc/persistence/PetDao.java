@@ -13,7 +13,7 @@ import java.util.List;
 import br.edu.fateczl.dogwalkerprojetc.model.Dono;
 import br.edu.fateczl.dogwalkerprojetc.model.Pet;
 
-public class PetDao implements ICRUDDao<Pet>, IPetDao, IFindAllDao {
+public class PetDao implements ICRUDDao<Pet>, IPetDao, IFindAllDao<Pet> {
     private final Context context;
     private GenericDao gDao;
     private SQLiteDatabase database;
@@ -54,9 +54,10 @@ public class PetDao implements ICRUDDao<Pet>, IPetDao, IFindAllDao {
     @SuppressLint("Range")
     @Override
     public Pet findOne(Pet pet) throws SQLException {
-        String sql = "SELECT d.CodigoUsuario as CodigoUsuario, d.nome as nomeDono, d.cpf as cpf, d.cep as cep, d.telefone as telefone, d.email as email, " +
+        String sql = "SELECT d.CodigoUsuario as CodigoUsuario, u.nome as nomeDono, u.telefone as telefone, d.cep as cep, d.email as email, " +
                 "p.nome as nomePet, p.id as id, p.raca as raca, p.porte as porte, p.idade as idade " +
-                "FROM Dono d INNER JOIN Pet p ON p.id = 1 AND WHERE id = " + pet.getId();
+                "FROM Dono d INNER JOIN Usuario u ON d.CodigoUsuario = u.Codigo " +
+                "INNER JOIN Pet p ON d.CodigoUsuario = 1 AND p.id =" + pet.getId();
         Cursor cursor = database.rawQuery(sql, null);
         if(cursor != null){
             cursor.moveToNext();
@@ -66,7 +67,7 @@ public class PetDao implements ICRUDDao<Pet>, IPetDao, IFindAllDao {
             dono.setCodigo(cursor.getInt(cursor.getColumnIndex("CodigoUsuario")));
             dono.setNome(cursor.getString(cursor.getColumnIndex("nomeDono")));
             dono.setCep(cursor.getInt(cursor.getColumnIndex("cep")));
-            dono.setTelefone(cursor.getInt(cursor.getColumnIndex("telefone")));
+            dono.setTelefone(cursor.getString(cursor.getColumnIndex("telefone")));
             dono.setEmail(cursor.getString(cursor.getColumnIndex("email")));
 
             pet.setId(cursor.getInt(cursor.getColumnIndex("id")));
@@ -85,9 +86,10 @@ public class PetDao implements ICRUDDao<Pet>, IPetDao, IFindAllDao {
     @Override
     public List<Pet> findAll() throws SQLException {
         List<Pet> pets = new ArrayList<>();
-        String sql = "SELECT d.CodigoUsuario as CodigoUsuario, d.nome as nomeDono, d.cpf as cpf, d.cep as cep, d.telefone as telefone, d.email as email, " +
+        String sql = "SELECT d.CodigoUsuario as CodigoUsuario, u.nome as nomeDono, u.telefone as telefone, d.cep as cep, d.email as email, " +
                 "p.nome as nomePet, p.id as id, p.raca as raca, p.porte as porte, p.idade as idade " +
-                "FROM Dono d INNER JOIN Pet p ON d.cpf = p.id";
+                "FROM Dono d INNER JOIN Usuario u ON d.CodigoUsuario = u.Codigo " +
+                "INNER JOIN Pet p ON d.CodigoUsuario = 1";
         Cursor cursor = database.rawQuery(sql, null);
         if(cursor != null){
             cursor.moveToNext();
@@ -96,9 +98,8 @@ public class PetDao implements ICRUDDao<Pet>, IPetDao, IFindAllDao {
             Dono dono = new Dono();
             dono.setCodigo(cursor.getInt(cursor.getColumnIndex("CodigoUsuario")));
             dono.setNome(cursor.getString(cursor.getColumnIndex("nomeDono")));
-            dono.setCpf(cursor.getInt(cursor.getColumnIndex("cpf")));
             dono.setCep(cursor.getInt(cursor.getColumnIndex("cep")));
-            dono.setTelefone(cursor.getInt(cursor.getColumnIndex("telefone")));
+            dono.setTelefone(cursor.getString(cursor.getColumnIndex("telefone")));
             dono.setEmail(cursor.getString(cursor.getColumnIndex("email")));
 
             Pet pet = new Pet();
@@ -120,10 +121,10 @@ public class PetDao implements ICRUDDao<Pet>, IPetDao, IFindAllDao {
         ContentValues contentValues = new ContentValues();
         contentValues.put("nome", pet.getNome());
         contentValues.put("id", pet.getId());
+        contentValues.put("codigoDono", 1);
         contentValues.put("raca", pet.getRaca());
         contentValues.put("idade", pet.getIdade());
-        contentValues.put("porte", pet.getNome());
-        contentValues.put("nome", pet.getDono().getCpf());
+        contentValues.put("porte", pet.getPorte());
 
         return contentValues;
     }

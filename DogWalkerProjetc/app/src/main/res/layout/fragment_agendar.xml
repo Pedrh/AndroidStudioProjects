@@ -11,12 +11,13 @@
         android:id="@+id/radioGroup6"
         android:layout_width="273dp"
         android:layout_height="48dp"
-        android:layout_marginTop="20dp"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNomePet3Ag">
+        app:layout_constraintTop_toBottomOf="@+id/tvValorAg"
+        app:layout_constraintVertical_bias="0.604">
 
         <RadioButton
             android:id="@+id/rbTrintaMinAg"
@@ -41,52 +42,49 @@
         android:id="@+id/btnCalcValorAg"
         android:layout_width="162dp"
         android:layout_height="73dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="#B7F86C6C"
         android:text="@string/calcVal"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.136"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etHoraAg"
-        app:layout_constraintVertical_bias="0.415" />
+        app:layout_constraintEnd_toStartOf="@+id/btnConfirmaAg"
+        app:layout_constraintHorizontal_bias="0.246"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvPagamentoAg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginBottom="48dp"
         android:text="@string/pagamento"
         android:textColor="@color/black"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/etLocalAg"
         app:layout_constraintEnd_toStartOf="@+id/radioGroup7"
-        app:layout_constraintHorizontal_bias="0.542"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTempoPasseioAg" />
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnConfirmaAg"
         android:layout_width="145dp"
         android:layout_height="73dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="#B7F86C6C"
         android:text="@string/confirma"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.442"
-        app:layout_constraintStart_toEndOf="@+id/btnCalcValorAg"
-        app:layout_constraintTop_toBottomOf="@+id/etHoraAg"
-        app:layout_constraintVertical_bias="0.111" />
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvValorAg"
         android:layout_width="142dp"
         android:layout_height="186dp"
+        android:layout_marginTop="20dp"
         android:scrollbars="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.264"
+        app:layout_constraintHorizontal_bias="0.259"
         app:layout_constraintStart_toEndOf="@+id/etNomePet2Ag"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup3" />
 
@@ -94,25 +92,24 @@
         android:id="@+id/tvTempoPasseioAg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="40dp"
         android:text="@string/tempoPasseio"
         android:textColor="@color/black"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvPagamentoAg"
         app:layout_constraintEnd_toStartOf="@+id/radioGroup6"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNomePet3Ag" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
         android:id="@+id/radioGroup7"
         android:layout_width="273dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="40dp"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/etLocalAg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup6">
+        app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
             android:id="@+id/rbDinheiroAg"
@@ -137,71 +134,72 @@
         android:id="@+id/etHoraAg"
         android:layout_width="200dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="@string/horaEncontro"
         android:importantForAutofill="no"
         android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/btnCalcValorAg"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintHorizontal_bias="0.075"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etDataAg"
         tools:textColorHint="@color/black" />
 
     <EditText
         android:id="@+id/etLocalAg"
         android:layout_width="356dp"
         android:layout_height="48dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginBottom="24dp"
         android:ems="10"
         android:hint="@string/localEncontro"
         android:importantForAutofill="no"
         android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/etDataAg"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.29"
+        app:layout_constraintHorizontal_bias="0.285"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup7"
         tools:textColorHint="@color/black" />
 
     <EditText
         android:id="@+id/etDataAg"
         android:layout_width="200dp"
         android:layout_height="48dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="@string/dataPasseio"
         android:importantForAutofill="no"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintBottom_toTopOf="@+id/etHoraAg"
+        app:layout_constraintEnd_toStartOf="@+id/btnCancelarAg"
+        app:layout_constraintHorizontal_bias="0.34"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etLocalAg"
         tools:textColorHint="@color/black" />
 
     <TextView
         android:id="@+id/tvPassearComAg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="4dp"
         android:text="@string/passearCom"
         android:textColor="@color/black"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/etNomePet1Ag"
         app:layout_constraintEnd_toStartOf="@+id/radioGroup3"
-        app:layout_constraintHorizontal_bias="0.941"
+        app:layout_constraintHorizontal_bias="0.727"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.529" />
 
     <RadioGroup
         android:id="@+id/radioGroup3"
         android:layout_width="273dp"
         android:layout_height="48dp"
-        android:layout_marginTop="28dp"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/etNomePet1Ag"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.531">
 
         <RadioButton
             android:id="@+id/rbUmpetAg"
@@ -226,45 +224,60 @@
         android:id="@+id/etNomePet1Ag"
         android:layout_width="200dp"
         android:layout_height="48dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="@string/nome"
         android:importantForAutofill="no"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintBottom_toTopOf="@+id/etNomePet2Ag"
+        app:layout_constraintEnd_toStartOf="@+id/tvValorAg"
+        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPassearComAg"
         tools:textColorHint="@color/black" />
 
     <EditText
         android:id="@+id/etNomePet2Ag"
         android:layout_width="200dp"
         android:layout_height="48dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="28dp"
         android:ems="10"
         android:hint="@string/nome"
         android:importantForAutofill="no"
         android:inputType="text"
         android:textColorHint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/etNomePet3Ag"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.075"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNomePet1Ag" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/etNomePet3Ag"
         android:layout_width="200dp"
         android:layout_height="48dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="36dp"
         android:ems="10"
         android:hint="@string/nome"
         android:importantForAutofill="no"
         android:inputType="text"
         android:textColorHint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/tvTempoPasseioAg"
+        app:layout_constraintEnd_toStartOf="@+id/tvValorAg"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnCancelarAg"
+        android:layout_width="125dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#B7F86C6C"
+        android:text="@string/cancelar"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/btnConfirmaAg"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintHorizontal_bias="0.86"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNomePet2Ag" />
+        app:layout_constraintTop_toBottomOf="@+id/etLocalAg"
+        app:layout_constraintVertical_bias="0.21" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -62,7 +62,8 @@ public class WalkerDao implements ICRUDDao<Walker>, IWalkerDao, IFindAllDao {
     @SuppressLint("Range")
     @Override
     public Walker findOne(Walker walker) throws SQLException {
-        String sql = "SELECT Nome, CodigoUsuario, Telefone, AnosExperiencia  FROM Walker WHERE CodigoUsuario =" + walker.getCodigo();
+        String sql = "SELECT u.Nome as Nome, u.Telefone as Telefone, w.CodigoUsuario as CodigoUsuario, w.AnosExperiencia as AnosExperiencia" +
+                " FROM Walker w INNER JOIN Usuario u ON u.Codigo = w.CodigoUsuario AND w.CodigoUsuario =" + walker.getCodigo();
         Cursor cursor = database.rawQuery(sql, null);
         if(cursor != null){
             cursor.moveToNext();
@@ -70,7 +71,7 @@ public class WalkerDao implements ICRUDDao<Walker>, IWalkerDao, IFindAllDao {
         if(!cursor.isAfterLast()){
             walker.setNome(cursor.getString(cursor.getColumnIndex("nome")));
             walker.setCodigo(cursor.getInt(cursor.getColumnIndex("CodigoUsuario")));
-            walker.setTelefone(cursor.getInt(cursor.getColumnIndex("telefone")));
+            walker.setTelefone(cursor.getString(cursor.getColumnIndex("telefone")));
             walker.setAnosExperiencia(cursor.getInt(cursor.getColumnIndex("AnosExperiencia")));
         }
         cursor.close();
@@ -81,7 +82,8 @@ public class WalkerDao implements ICRUDDao<Walker>, IWalkerDao, IFindAllDao {
     @Override
     public List<Walker> findAll() throws SQLException {
         List<Walker> walkers =new ArrayList<>();
-        String sql = "SELECT Nome, CodigoUsuario, Telefone, AnosExperiencia  FROM Walker";
+        String sql = "SELECT u.Nome as Nome, u.Telefone as Telefone, w.CodigoUsuario as CodigoUsuario, w.AnosExperiencia as AnosExperiencia" +
+                " FROM Walker w INNER JOIN Usuario u ON u.Codigo = w.CodigoUsuario";
         Cursor cursor = database.rawQuery(sql, null);
         if(cursor != null){
             cursor.moveToNext();
@@ -90,7 +92,7 @@ public class WalkerDao implements ICRUDDao<Walker>, IWalkerDao, IFindAllDao {
             Walker walker = new Walker();
             walker.setNome(cursor.getString(cursor.getColumnIndex("nome")));
             walker.setCodigo(cursor.getInt(cursor.getColumnIndex("CodigoUsuario")));
-            walker.setTelefone(cursor.getInt(cursor.getColumnIndex("telefone")));
+            walker.setTelefone(cursor.getString(cursor.getColumnIndex("telefone")));
             walker.setAnosExperiencia(cursor.getInt(cursor.getColumnIndex("AnosExperiencia")));
 
             walkers.add(walker);
