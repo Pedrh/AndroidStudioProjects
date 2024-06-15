@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +19,7 @@ import java.util.List;
 
 import br.edu.fateczl.dogwalkerprojetc.controller.DonoController;
 import br.edu.fateczl.dogwalkerprojetc.controller.PetController;
+import br.edu.fateczl.dogwalkerprojetc.model.Agendar;
 import br.edu.fateczl.dogwalkerprojetc.model.Dono;
 import br.edu.fateczl.dogwalkerprojetc.model.Pet;
 import br.edu.fateczl.dogwalkerprojetc.persistence.DonoDao;
@@ -31,7 +31,7 @@ public class PetFragment extends Fragment {
     private EditText etIdPet, etNomePet, etRacaPet;
     private RadioButton rbFilhotePet, rbAdultoPet, rbSeniorPet, rbPequenoPet, rbMedioPet, rbGrandePet;
     private Button btnInsertPet, btnUpdatePet, btnDeletePet, btnFindOnePet, btnFindAllPet;
-    private TextView tvFindAllPet;
+    private TextView tvShowAllPet;
 
     private PetController pCont;
     private DonoController dCont;
@@ -63,8 +63,8 @@ public class PetFragment extends Fragment {
         btnDeletePet = view.findViewById(R.id.btnDeletePet);
         btnFindOnePet = view.findViewById(R.id.btnFindOnePet);
         btnFindAllPet = view.findViewById(R.id.btnFindAllPet);
-        tvFindAllPet = view.findViewById(R.id.tvFindAllPet);
-        tvFindAllPet.setMovementMethod(new ScrollingMovementMethod());
+        tvShowAllPet = view.findViewById(R.id.tvShowAllPet);
+        tvShowAllPet.setMovementMethod(new ScrollingMovementMethod());
 
         pCont = new PetController(new PetDao(view.getContext()));
         dCont = new DonoController(new DonoDao(view.getContext()));
@@ -85,9 +85,14 @@ public class PetFragment extends Fragment {
                 Toast.makeText(view.getContext(), "Necessário cadastrar dono antes", Toast.LENGTH_LONG).show();
                 limpaCampos();
             } else{
-                Pet pet = montaPet(dono);
-                pCont.insert(pet);
-                Toast.makeText(view.getContext(), "Pet inserido com sucesso", Toast.LENGTH_LONG).show();
+                boolean todosPreenchidos = camposPreenchidos();
+                if (todosPreenchidos) {
+                    Pet pet = montaPet(dono);
+                    pCont.insert(pet);
+                    Toast.makeText(view.getContext(), "Pet inserido com sucesso", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(view.getContext(), "Necessário preencher todos os campos", Toast.LENGTH_LONG).show();
+                }
             }
         } catch (SQLException e) {
             Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
@@ -103,9 +108,20 @@ public class PetFragment extends Fragment {
                 Toast.makeText(view.getContext(), "Necessário cadastrar dono antes", Toast.LENGTH_LONG).show();
                 limpaCampos();
             } else{
-                Pet pet = montaPet(dono);
-                pCont.update(pet);
-                Toast.makeText(view.getContext(), "Pet atualizado com sucesso", Toast.LENGTH_LONG).show();
+                boolean todosPreenchidos = camposPreenchidos();
+                if (todosPreenchidos) {
+                    Pet pet = montaPet(dono);
+                    Pet petExiste = pCont.findOne(pet);
+                    if (petExiste.getNome() == null) {
+                        Toast.makeText(view.getContext(), "Pet não encontrado", Toast.LENGTH_LONG).show();
+                        limpaCampos();
+                    } else {
+                        pCont.update(pet);
+                        Toast.makeText(view.getContext(), "Pet atualizado com sucesso", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(view.getContext(), "Necessário preencher todos os campos", Toast.LENGTH_LONG).show();
+                }
             }
         } catch (SQLException e) {
             Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
@@ -121,9 +137,23 @@ public class PetFragment extends Fragment {
                 Toast.makeText(view.getContext(), "Necessário cadastrar dono antes", Toast.LENGTH_LONG).show();
                 limpaCampos();
             } else{
-                Pet pet = montaPet(dono);
-                pCont.delete(pet);
-                Toast.makeText(view.getContext(), "Pet deletado com sucesso", Toast.LENGTH_LONG).show();
+
+                boolean todosPreenchidos = camposPreenchidos();
+                if (todosPreenchidos) {
+                    Pet pet = montaPet(dono);
+                    pet = pCont.findOne(pet);
+                    if (pet.getNome() == null) {
+                        Toast.makeText(view.getContext(), "Pet não encontrado", Toast.LENGTH_LONG).show();
+                        limpaCampos();
+                    } else {
+                        pCont.delete(pet);
+                        Toast.makeText(view.getContext(), "Pet deletado com sucesso", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(view.getContext(), "Necessário preencher todos os campos", Toast.LENGTH_LONG).show();
+                }
+
+
             }
         } catch (SQLException e) {
             Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
@@ -167,7 +197,7 @@ public class PetFragment extends Fragment {
                 for(Pet p:pets){
                     buffer.append(p.toString() + "\n");
                 }
-                tvFindAllPet.setText(buffer.toString());
+                tvShowAllPet.setText(buffer.toString());
             }
         } catch (SQLException e) {
             Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
@@ -176,7 +206,11 @@ public class PetFragment extends Fragment {
 
     private Pet montaPet(Dono dono){
         Pet p = new Pet();
-        p.setId(Integer.parseInt(etIdPet.getText().toString()));
+        if(etIdPet.getText().toString().isEmpty()){
+            p.setId(0);
+        } else{
+            p.setId(Integer.parseInt(etIdPet.getText().toString()));
+        }
         p.setNome(etNomePet.getText().toString());
         p.setRaca(etRacaPet.getText().toString());
         p.setPorte(definePorte());
@@ -202,6 +236,7 @@ public class PetFragment extends Fragment {
         etRacaPet.setText("");
         rbPequenoPet.setChecked(true);
         rbFilhotePet.setChecked(true);
+        tvShowAllPet.setText("");
     }
 
     private void selecionaPorte(Pet p) {
@@ -271,5 +306,18 @@ public class PetFragment extends Fragment {
         }
 
         return dono;
+    }
+
+    private boolean camposPreenchidos(){
+        boolean todosPreenchidos = false;
+        if(!etIdPet.getText().toString().isEmpty()){
+            if(!etNomePet.getText().toString().isEmpty()){
+                if(!etRacaPet.getText().toString().isEmpty()){
+                    todosPreenchidos = true;
+                }
+            }
+        }
+
+        return todosPreenchidos;
     }
 }

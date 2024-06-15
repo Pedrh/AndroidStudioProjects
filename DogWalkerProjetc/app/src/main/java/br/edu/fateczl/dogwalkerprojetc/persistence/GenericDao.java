@@ -27,11 +27,11 @@ public class GenericDao extends SQLiteOpenHelper {
     private static final String CREATE_PET =
             "CREATE TABLE Pet(" +
                     "Nome VARCHAR(100)," +
-                    "id INT(10) PRIMARY KEY," +
+                    "Id INT(10) PRIMARY KEY," +
                     "CodigoDono INT(10)," +
-                    "raca VARCHAR(80)," +
-                    "porte VARCHAR(80)," +
-                    "idade VARCHAR(80)," +
+                    "Raca VARCHAR(80)," +
+                    "Porte VARCHAR(80)," +
+                    "Idade VARCHAR(80)," +
                     "FOREIGN KEY (CodigoDono) REFERENCES Dono(CodigoUsuario) ON DELETE CASCADE);";
     private static final String CREATE_AGENDAMENTO =
             "CREATE TABLE Agendamento(" +

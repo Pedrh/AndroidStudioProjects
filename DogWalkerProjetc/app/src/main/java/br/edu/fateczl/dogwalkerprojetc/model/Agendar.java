@@ -83,7 +83,6 @@ public class Agendar {
     @NonNull
     @Override
     public String toString() {
-        return "Agendamento - Hora:" + horaEncontro + ", " + localEncontro + " " + dataEncontro +"\n" +
-                "Dono: " + dono.getNome() + " - Walker: " + walker.nome;
+        return "Dono: " + dono.getNome() + " | Walker: " + walker.nome + ", Fone: " + walker.getTelefone();
     }
 }

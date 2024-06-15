@@ -53,14 +53,17 @@ public class AgendarFragment extends Fragment {
         etHoraAg = view.findViewById(R.id.etHoraAg);
         etDataAg = view.findViewById(R.id.etDataAg);
         rbUmPetAg = view.findViewById(R.id.rbUmpetAg);
+        rbUmPetAg.setChecked(true);
         rbDoisPetsAg = view.findViewById(R.id.rbDoisPetsAg);
         rbTresPetsAg = view.findViewById(R.id.rbTresPetsAg);
         rbTrintaMinAg = view.findViewById(R.id.rbTrintaMinAg);
+        rbTrintaMinAg.setChecked(true);
         rbUmaHora = view.findViewById(R.id.rbUmaHoraAg);
         rbDuasHoras = view.findViewById(R.id.rbDuasHorasAg);
         rbDinheiroAg = view.findViewById(R.id.rbDinheiroAg);
         rbCartaoAg = view.findViewById(R.id.rbCartaoAg);
         rbPixAg = view.findViewById(R.id.rbPixAg);
+        rbPixAg.setChecked(true);
         btnCalcValorAg = view.findViewById(R.id.btnCalcValorAg);
         btnConfirmaAg = view.findViewById(R.id.btnConfirmaAg);
         btnCancelarAg = view.findViewById(R.id.btnCancelarAg);
@@ -89,7 +92,7 @@ public class AgendarFragment extends Fragment {
             Toast.makeText(view.getContext(), "Necessário cadastrar dono antes", Toast.LENGTH_LONG).show();
             limpaCampos();
         } else {
-            boolean todosPreenchidos = camposPreenchdios();
+            boolean todosPreenchidos = camposPreenchidos();
             if (todosPreenchidos) {
                 Agendar ag = montaAgenda(dono);
                 float valorFinal = pc.calcularValorFinal(ag);
@@ -97,7 +100,6 @@ public class AgendarFragment extends Fragment {
                 tvSaidaAg.setText(msg);
             } else {
                 Toast.makeText(view.getContext(), "Necessário preencher todos os campos", Toast.LENGTH_LONG).show();
-                limpaCampos();
             }
         }
     }
@@ -110,14 +112,34 @@ public class AgendarFragment extends Fragment {
                 Toast.makeText(view.getContext(), "Necessário cadastrar dono antes", Toast.LENGTH_LONG).show();
                 limpaCampos();
             } else{
-                Agendar ag = montaAgenda(dono);
-                aCont.insert(ag);
-                Toast.makeText(view.getContext(), ag.toString(), Toast.LENGTH_LONG).show();
+
+                boolean todosPreenchidos = camposPreenchidos();
+                if (todosPreenchidos) {
+                    wCont.geraWalkers();
+                    int walkerCodigo = (int) ((Math.random() * 2) + 2.1);
+                    Walker walker = new Walker();
+                    walker.setCodigo(walkerCodigo);
+                    walker = wCont.findOne(walker);
+
+                    if(walker.getNome() == null){
+                        Toast.makeText(view.getContext(), "Walker não cadastrado", Toast.LENGTH_LONG).show();
+                        limpaCampos();
+                    } else{
+                        Agendar ag = montaAgenda(dono);
+                        ag.setWalker(walker);
+
+                        aCont.insert(ag);
+                        String msg = "Walker: " + ag.getWalker().toString();
+                        Toast.makeText(view.getContext(), msg, Toast.LENGTH_LONG).show();
+                        limpaCampos();
+                    }
+                } else {
+                    Toast.makeText(view.getContext(), "Necessário preencher todos os campos", Toast.LENGTH_LONG).show();
+                }
             }
         } catch (SQLException e) {
             Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
-        limpaCampos();
     }
 
     private void acaoFindOne(){
@@ -135,8 +157,7 @@ public class AgendarFragment extends Fragment {
                     limpaCampos();
                 } else {
                     preencheCampos(ag);
-                    String msg = "Walker: " + ag.getWalker().toString();
-                    tvSaidaAg.setText(msg);
+                    tvSaidaAg.setText(ag.toString());
                 }
             }
         } catch (SQLException e) {
@@ -153,13 +174,19 @@ public class AgendarFragment extends Fragment {
                 limpaCampos();
             } else{
                 Agendar ag = montaAgenda(dono);
-                aCont.delete(ag);
-                Toast.makeText(view.getContext(), "Passeio cancelado", Toast.LENGTH_LONG).show();
+                ag = aCont.findOne(ag);
+                if (ag.getLocalEncontro() == null) {
+                    Toast.makeText(view.getContext(), "Nenhum passeio encontrado", Toast.LENGTH_LONG).show();
+                    limpaCampos();
+                } else {
+                    aCont.delete(ag);
+                    Toast.makeText(view.getContext(), "Passeio cancelado", Toast.LENGTH_LONG).show();
+                    limpaCampos();
+                }
             }
         } catch (SQLException e) {
             Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
-        limpaCampos();
     }
 
     private Agendar montaAgenda( Dono dono){
@@ -167,21 +194,10 @@ public class AgendarFragment extends Fragment {
         ag.setDataEncontro(etDataAg.getText().toString());
         ag.setHoraEncontro(etHoraAg.getText().toString());
         ag.setLocalEncontro(etLocalAg.getText().toString());
-        ag.setTmpPasseio(calculaTempoPasseio());
-        ag.setQtdPasseio(calculaQtdPets());
+        ag.setTmpPasseio(defineTempoPasseio());
+        ag.setQtdPasseio(defineQtdPets());
         ag.setFormaPagto(defineFormaPagto());
         ag.setDono(dono);
-
-        try{
-            int walkerCodigo = (int) ((Math.random() * 2) + 2.1);
-            Walker walker = new Walker();
-            walker.setCodigo(walkerCodigo);
-            walker = wCont.findOne(walker);
-            ag.setWalker(walker);
-
-        } catch (SQLException e) {
-            Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-        }
 
         return ag;
     }
@@ -192,7 +208,8 @@ public class AgendarFragment extends Fragment {
         etHoraAg.setText("");
         rbTrintaMinAg.setChecked(true);
         rbUmPetAg.setChecked(true);
-        rbDinheiroAg.setChecked(true);
+        rbPixAg.setChecked(true);
+        tvSaidaAg.setText("");
     }
 
     private void preencheCampos(Agendar ag) {
@@ -206,7 +223,7 @@ public class AgendarFragment extends Fragment {
 
 
 
-    private int calculaTempoPasseio() {
+    private int defineTempoPasseio() {
         int tempo = 0;
         if(rbTrintaMinAg.isChecked()){
             tempo = 30;
@@ -233,7 +250,7 @@ public class AgendarFragment extends Fragment {
         }
     }
 
-    private int calculaQtdPets() {
+    private int defineQtdPets() {
         int qtd = 0;
         if(rbUmPetAg.isChecked()){
             qtd = 1;
@@ -301,7 +318,7 @@ public class AgendarFragment extends Fragment {
         return dono;
     }
 
-    private boolean camposPreenchdios(){
+    private boolean camposPreenchidos(){
         boolean todosPreenchidos = false;
         if(!etLocalAg.getText().toString().isEmpty()){
             if(!etDataAg.getText().toString().isEmpty()){

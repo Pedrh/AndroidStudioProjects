@@ -16,7 +16,9 @@ import android.widget.Toast;
 import java.sql.SQLException;
 
 import br.edu.fateczl.dogwalkerprojetc.controller.DonoController;
+import br.edu.fateczl.dogwalkerprojetc.model.Agendar;
 import br.edu.fateczl.dogwalkerprojetc.model.Dono;
+import br.edu.fateczl.dogwalkerprojetc.model.Walker;
 import br.edu.fateczl.dogwalkerprojetc.persistence.DonoDao;
 
 public class DonoFragment extends Fragment {
@@ -45,9 +47,9 @@ public class DonoFragment extends Fragment {
         btnUpdateDono = view.findViewById(R.id.btnUpdateDono);
         btnFindOneDono = view.findViewById(R.id.btnFindOneDono);
         tvCadastradoDono = view.findViewById(R.id.tvCadastradoDono);
-        identificarCadastro();
 
         dCont = new DonoController(new DonoDao(view.getContext()));
+        identificarCadastro();
 
         btnInsertDono.setOnClickListener(op -> acaoInsert());
         btnUpdateDono.setOnClickListener(op -> acaoUpdate());
@@ -75,10 +77,16 @@ public class DonoFragment extends Fragment {
     private void acaoInsert() {
         Dono dono = montaDono();
         try{
-            if(tvCadastradoDono.getText().toString().contains("cadastrado")){
-                dCont.insert(dono);
-                Toast.makeText(view.getContext(), "Usuário efetuou cadastro", Toast.LENGTH_LONG).show();
-                tvCadastradoDono.setText("Usuário logado");
+            if(!tvCadastradoDono.getText().toString().equals("Usuário logado")){
+
+                boolean todosPreenchidos = camposPreenchidos();
+                if (todosPreenchidos) {
+                    dCont.insert(dono);
+                    Toast.makeText(view.getContext(), "Usuário efetuou cadastro", Toast.LENGTH_LONG).show();
+                    tvCadastradoDono.setText("Usuário logado");
+                } else {
+                    Toast.makeText(view.getContext(), "Necessário preencher todos os campos", Toast.LENGTH_LONG).show();
+                }
             } else {
                 acaoUpdate();
             }
@@ -91,7 +99,7 @@ public class DonoFragment extends Fragment {
     private void acaoUpdate() {
         Dono dono = montaDono();
         try{
-            if(tvCadastradoDono.getText().toString().contains("cadastrado")){
+            if(!tvCadastradoDono.getText().toString().equals("Usuário logado")){
                acaoInsert();
             } else {
                 dCont.update(dono);
@@ -147,6 +155,20 @@ public class DonoFragment extends Fragment {
         etFoneDono.setText("");
     }
 
+    private boolean camposPreenchidos(){
+        boolean todosPreenchidos = false;
+        if(!etNomeDono.getText().toString().isEmpty()){
+            if(!etCEPDono.getText().toString().isEmpty()){
+                if(!etFoneDono.getText().toString().isEmpty()){
+                    if(!etEmailDono.getText().toString().isEmpty()){
+                        todosPreenchidos = true;
+                    }
+                }
+            }
+        }
+
+        return todosPreenchidos;
+    }
 
 
 }

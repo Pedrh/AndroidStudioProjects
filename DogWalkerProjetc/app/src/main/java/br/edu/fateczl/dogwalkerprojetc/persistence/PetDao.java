@@ -54,32 +54,33 @@ public class PetDao implements ICRUDDao<Pet>, IPetDao, IFindAllDao<Pet> {
     @SuppressLint("Range")
     @Override
     public Pet findOne(Pet pet) throws SQLException {
-        String sql = "SELECT d.CodigoUsuario as CodigoUsuario, u.nome as nomeDono, u.telefone as telefone, d.cep as cep, d.email as email, " +
-                "p.nome as nomePet, p.id as id, p.raca as raca, p.porte as porte, p.idade as idade " +
+        String sql = "SELECT d.CodigoUsuario as CodigoUsuario, u.Nome as NomeDono, u.Telefone as Telefone, d.Cep as Cep, d.Email as Email, " +
+                "p.Nome as NomePet, p.Id as Id, p.Raca as Raca, p.Porte as Porte, p.Idade as Idade " +
                 "FROM Dono d INNER JOIN Usuario u ON d.CodigoUsuario = u.Codigo " +
-                "INNER JOIN Pet p ON d.CodigoUsuario = 1 AND p.id =" + pet.getId();
+                "INNER JOIN Pet p ON p.CodigoDono = 1 AND p.Id =" + pet.getId();
         Cursor cursor = database.rawQuery(sql, null);
         if(cursor != null){
             cursor.moveToNext();
         }
+        Pet petEncontrado = new Pet();
         if(!cursor.isAfterLast()){
             Dono dono = new Dono();
             dono.setCodigo(cursor.getInt(cursor.getColumnIndex("CodigoUsuario")));
-            dono.setNome(cursor.getString(cursor.getColumnIndex("nomeDono")));
-            dono.setCep(cursor.getInt(cursor.getColumnIndex("cep")));
-            dono.setTelefone(cursor.getString(cursor.getColumnIndex("telefone")));
-            dono.setEmail(cursor.getString(cursor.getColumnIndex("email")));
+            dono.setNome(cursor.getString(cursor.getColumnIndex("NomeDono")));
+            dono.setCep(cursor.getInt(cursor.getColumnIndex("Cep")));
+            dono.setTelefone(cursor.getString(cursor.getColumnIndex("Telefone")));
+            dono.setEmail(cursor.getString(cursor.getColumnIndex("Email")));
 
-            pet.setId(cursor.getInt(cursor.getColumnIndex("id")));
-            pet.setNome(cursor.getString(cursor.getColumnIndex("nomePet")));
-            pet.setRaca(cursor.getString(cursor.getColumnIndex("raca")));
-            pet.setPorte(cursor.getString(cursor.getColumnIndex("porte")));
-            pet.setIdade(cursor.getString(cursor.getColumnIndex("idade")));
-            pet.setDono(dono);
+            petEncontrado.setId(cursor.getInt(cursor.getColumnIndex("Id")));
+            petEncontrado.setNome(cursor.getString(cursor.getColumnIndex("NomePet")));
+            petEncontrado.setRaca(cursor.getString(cursor.getColumnIndex("Raca")));
+            petEncontrado.setPorte(cursor.getString(cursor.getColumnIndex("Porte")));
+            petEncontrado.setIdade(cursor.getString(cursor.getColumnIndex("Idade")));
+            petEncontrado.setDono(dono);
 
         }
         cursor.close();
-        return pet;
+        return petEncontrado;
     }
 
     @SuppressLint("Range")
@@ -89,12 +90,12 @@ public class PetDao implements ICRUDDao<Pet>, IPetDao, IFindAllDao<Pet> {
         String sql = "SELECT d.CodigoUsuario as CodigoUsuario, u.nome as nomeDono, u.telefone as telefone, d.cep as cep, d.email as email, " +
                 "p.nome as nomePet, p.id as id, p.raca as raca, p.porte as porte, p.idade as idade " +
                 "FROM Dono d INNER JOIN Usuario u ON d.CodigoUsuario = u.Codigo " +
-                "INNER JOIN Pet p ON d.CodigoUsuario = 1";
+                "INNER JOIN Pet p ON p.CodigoDono = 1";
         Cursor cursor = database.rawQuery(sql, null);
         if(cursor != null){
             cursor.moveToNext();
         }
-        if(!cursor.isAfterLast()){
+        while(!cursor.isAfterLast()){
             Dono dono = new Dono();
             dono.setCodigo(cursor.getInt(cursor.getColumnIndex("CodigoUsuario")));
             dono.setNome(cursor.getString(cursor.getColumnIndex("nomeDono")));

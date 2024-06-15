@@ -65,6 +65,6 @@ public class Pet {
     @NonNull
     @Override
     public String toString() {
-        return id +" - " + nome + "(" + raca + "). Dono:" + dono.getNome();
+        return id +" - " + nome + "(" + raca + ")";
     }
 }

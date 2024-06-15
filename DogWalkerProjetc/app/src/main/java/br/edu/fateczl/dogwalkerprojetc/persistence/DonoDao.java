@@ -62,20 +62,22 @@ public class DonoDao implements ICRUDDao<Dono>, IDonoDao {
     @SuppressLint("Range")
     @Override
     public Dono findOne(Dono dono) throws SQLException  {
-        String sql = "SELECT u.nome as nome, u.telefone as telefone, d.cep as cep, d.email as email FROM Dono d INNER JOIN Usuario u " +
+        String sql = "SELECT u.codigo as codigo, u.nome as nome, u.telefone as telefone, d.cep as cep, d.email as email FROM Dono d INNER JOIN Usuario u " +
                 "ON u.codigo = d.CodigoUsuario AND d.CodigoUsuario = 1";
         Cursor cursor = database.rawQuery(sql, null);
         if(cursor != null){
             cursor.moveToNext();
         }
+        Dono donoEncontrado = new Dono();
         if(!cursor.isAfterLast()){
-            dono.setNome(cursor.getString(cursor.getColumnIndex("nome")));
-            dono.setCep(cursor.getInt(cursor.getColumnIndex("cep")));
-            dono.setTelefone(cursor.getString(cursor.getColumnIndex("telefone")));
-            dono.setEmail(cursor.getString(cursor.getColumnIndex("email")));
+            donoEncontrado.setCodigo(cursor.getInt(cursor.getColumnIndex("codigo")));
+            donoEncontrado.setNome(cursor.getString(cursor.getColumnIndex("nome")));
+            donoEncontrado.setCep(cursor.getInt(cursor.getColumnIndex("cep")));
+            donoEncontrado.setTelefone(cursor.getString(cursor.getColumnIndex("telefone")));
+            donoEncontrado.setEmail(cursor.getString(cursor.getColumnIndex("email")));
         }
         cursor.close();
-        return dono;
+        return donoEncontrado;
     }
 
     private ContentValues getCvUsuario(Dono dono){

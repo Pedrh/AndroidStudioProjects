@@ -154,74 +154,94 @@
         android:id="@+id/btnConfirmaAg"
         android:layout_width="126dp"
         android:layout_height="71dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="#B7F86C6C"
         android:text="@string/confirma"
         android:textColor="@color/black"
-        tools:layout_editor_absoluteX="247dp"
-        tools:layout_editor_absoluteY="465dp" />
+        app:layout_constraintBottom_toTopOf="@+id/tvSaidaAg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.87"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/etHoraAg"
         android:layout_width="200dp"
         android:layout_height="48dp"
+        android:layout_marginBottom="24dp"
         android:ems="10"
         android:hint="@string/horaEncontro"
         android:importantForAutofill="no"
         android:inputType="text"
-        tools:layout_editor_absoluteX="18dp"
-        tools:layout_editor_absoluteY="391dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnCalcValorAg"
+        app:layout_constraintEnd_toStartOf="@+id/btnCancelarAg"
+        app:layout_constraintHorizontal_bias="0.291"
+        app:layout_constraintStart_toStartOf="parent"
         tools:textColorHint="@color/black" />
 
     <Button
         android:id="@+id/btnCalcValorAg"
         android:layout_width="162dp"
         android:layout_height="73dp"
+        android:layout_marginBottom="12dp"
         android:backgroundTint="#B7F86C6C"
         android:text="@string/calcVal"
         android:textColor="@color/black"
-        tools:layout_editor_absoluteX="18dp"
-        tools:layout_editor_absoluteY="465dp" />
+        app:layout_constraintBottom_toTopOf="@+id/tvSaidaAg"
+        app:layout_constraintEnd_toStartOf="@+id/btnConfirmaAg"
+        app:layout_constraintHorizontal_bias="0.186"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/etDataAg"
         android:layout_width="200dp"
         android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="@string/dataPasseio"
         android:importantForAutofill="no"
         android:inputType="text"
-        tools:layout_editor_absoluteX="18dp"
-        tools:layout_editor_absoluteY="327dp"
+        app:layout_constraintBottom_toTopOf="@+id/etHoraAg"
+        app:layout_constraintEnd_toStartOf="@+id/btnFindOneAg"
+        app:layout_constraintHorizontal_bias="0.311"
+        app:layout_constraintStart_toStartOf="parent"
         tools:textColorHint="@color/black" />
 
     <Button
         android:id="@+id/btnCancelarAg"
         android:layout_width="125dp"
         android:layout_height="62dp"
+        android:layout_marginBottom="12dp"
         android:backgroundTint="#B7F86C6C"
         android:text="@string/cancelar"
         android:textColor="@color/black"
-        tools:layout_editor_absoluteX="248dp"
-        tools:layout_editor_absoluteY="391dp" />
+        app:layout_constraintBottom_toTopOf="@+id/btnConfirmaAg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.867"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvSaidaAg"
         android:layout_width="296dp"
         android:layout_height="107dp"
+        android:layout_marginBottom="36dp"
         android:scrollbars="horizontal"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="581dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnFindOneAg"
-        android:layout_width="126dp"
-        android:layout_height="46dp"
+        android:layout_width="124dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="#B7F86C6C"
         android:text="@string/findOne"
         android:textColor="@color/black"
-        tools:layout_editor_absoluteX="245dp"
-        tools:layout_editor_absoluteY="327dp" />
+        app:layout_constraintBottom_toTopOf="@+id/btnCancelarAg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.859"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

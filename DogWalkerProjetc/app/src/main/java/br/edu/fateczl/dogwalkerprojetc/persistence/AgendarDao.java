@@ -51,7 +51,7 @@ public class AgendarDao implements IAgendarDao, ICRUDDao<Agendar>{
     @Override
     public void delete(Agendar agendar) throws SQLException {
         String[] whereArgs = {agendar.getDataEncontro()};
-        database.delete("Aluguel", "dataEncontro = ?", whereArgs);
+        database.delete("Agendamento", "dataEncontro = ?", whereArgs);
     }
 
     @SuppressLint("Range")
@@ -59,12 +59,12 @@ public class AgendarDao implements IAgendarDao, ICRUDDao<Agendar>{
     public Agendar findOne(Agendar agendar) throws SQLException {
         String sql =
                 "SELECT " +
-                        "d.CodigoUsuario as codigoDono, ud.Nome as nomeDono, ud.telefone as foneDono," +
-                        "d.cep as cep, d.email as email, " +
-                        "w.CodigoUsuario as codigoWalker, uw.Nome as nomeWalker, uw.telefone as foneWalker, w.anosExperiencia as anosExperiencia, " +
-                        "ag.dataEncontro as dataEncontro, ag.localEncontro as localEncontro, ag.horaEncontro as horaEncontro," +
-                        "ag.qtdPasseio as qtdPasseio, ag.tempoPasseio as tempoPasseio, ag.formaPagto as formaPagto " +
-                        "FROM Dono d INNER JOIN Usuario u ON d.CodigoUsuario = u.Codigo INNER JOIN " +
+                        "ud.Codigo as CodigoDono, ud.Nome as NomeDono, ud.Telefone as FoneDono, " +
+                        "d.Cep as Cep, d.Email as Email, " +
+                        "uw.Codigo as CodigoWalker, uw.Nome as NomeWalker, uw.Telefone as FoneWalker, w.AnosExperiencia as AnosExperiencia, " +
+                        "ag.DataEncontro as DataEncontro, ag.LocalEncontro as LocalEncontro, ag.HoraEncontro as HoraEncontro," +
+                        "ag.QtdPasseio as QtdPasseio, ag.TempoPasseio as TempoPasseio, ag.FormaPagto as FormaPagto " +
+                        "FROM Dono d INNER JOIN Usuario ud ON d.CodigoUsuario = ud.Codigo INNER JOIN " +
                         "Agendamento ag on d.CodigoUsuario = ag.CodigoDono " +
                         "INNER JOIN Walker w on w.CodigoUsuario = ag.CodigoWalker INNER JOIN " +
                         "Usuario uw ON w.CodigoUsuario = uw.Codigo AND ag.dataEncontro = ?";
@@ -73,31 +73,32 @@ public class AgendarDao implements IAgendarDao, ICRUDDao<Agendar>{
         if(cursor != null){
             cursor.moveToNext();
         }
+        Agendar agedamentoEncontrado = new Agendar();
         if(!cursor.isAfterLast()){
             Dono dono = new Dono();
             dono.setCodigo(cursor.getInt(cursor.getColumnIndex("CodigoDono")));
-            dono.setNome(cursor.getString(cursor.getColumnIndex("nomeDono")));
-            dono.setTelefone(cursor.getString(cursor.getColumnIndex("foneDono")));
-            dono.setCep(cursor.getInt(cursor.getColumnIndex("cep")));
-            dono.setEmail(cursor.getString(cursor.getColumnIndex("email")));
+            dono.setNome(cursor.getString(cursor.getColumnIndex("NomeDono")));
+            dono.setTelefone(cursor.getString(cursor.getColumnIndex("FoneDono")));
+            dono.setCep(cursor.getInt(cursor.getColumnIndex("Cep")));
+            dono.setEmail(cursor.getString(cursor.getColumnIndex("Email")));
 
             Walker walker = new Walker();
             walker.setCodigo(cursor.getInt(cursor.getColumnIndex("CodigoWalker")));
-            walker.setNome(cursor.getString(cursor.getColumnIndex("nomeWalker")));
-            walker.setTelefone(cursor.getString(cursor.getColumnIndex("foneWalker")));
-            walker.setAnosExperiencia(cursor.getInt(cursor.getColumnIndex("anosExperiencia")));
+            walker.setNome(cursor.getString(cursor.getColumnIndex("NomeWalker")));
+            walker.setTelefone(cursor.getString(cursor.getColumnIndex("FoneWalker")));
+            walker.setAnosExperiencia(cursor.getInt(cursor.getColumnIndex("AnosExperiencia")));
 
-            agendar.setDataEncontro(cursor.getString(cursor.getColumnIndex("dataEncontro")));
-            agendar.setLocalEncontro(cursor.getString(cursor.getColumnIndex("localEncontro")));
-            agendar.setHoraEncontro(cursor.getString(cursor.getColumnIndex("horaEncontro")));
-            agendar.setQtdPasseio(cursor.getInt(cursor.getColumnIndex("qtdPasseio")));
-            agendar.setTmpPasseio(cursor.getInt(cursor.getColumnIndex("tempoPasseio")));
-            agendar.setFormaPagto(cursor.getString(cursor.getColumnIndex("formaPagto")));
-            agendar.setDono(dono);
-            agendar.setWalker(walker);
+            agedamentoEncontrado.setDataEncontro(cursor.getString(cursor.getColumnIndex("DataEncontro")));
+            agedamentoEncontrado.setLocalEncontro(cursor.getString(cursor.getColumnIndex("LocalEncontro")));
+            agedamentoEncontrado.setHoraEncontro(cursor.getString(cursor.getColumnIndex("HoraEncontro")));
+            agedamentoEncontrado.setQtdPasseio(cursor.getInt(cursor.getColumnIndex("QtdPasseio")));
+            agedamentoEncontrado.setTmpPasseio(cursor.getInt(cursor.getColumnIndex("TempoPasseio")));
+            agedamentoEncontrado.setFormaPagto(cursor.getString(cursor.getColumnIndex("FormaPagto")));
+            agedamentoEncontrado.setDono(dono);
+            agedamentoEncontrado.setWalker(walker);
         }
         cursor.close();
-        return agendar;
+        return agedamentoEncontrado;
     }
 
     private ContentValues getContentValues(Agendar ag){

@@ -62,27 +62,28 @@ public class WalkerDao implements ICRUDDao<Walker>, IWalkerDao, IFindAllDao {
     @SuppressLint("Range")
     @Override
     public Walker findOne(Walker walker) throws SQLException {
-        String sql = "SELECT u.Nome as Nome, u.Telefone as Telefone, w.CodigoUsuario as CodigoUsuario, w.AnosExperiencia as AnosExperiencia" +
+        String sql = "SELECT u.codigo as codigo, u.Nome as Nome, u.Telefone as Telefone, w.AnosExperiencia as AnosExperiencia" +
                 " FROM Walker w INNER JOIN Usuario u ON u.Codigo = w.CodigoUsuario AND w.CodigoUsuario =" + walker.getCodigo();
         Cursor cursor = database.rawQuery(sql, null);
         if(cursor != null){
             cursor.moveToNext();
         }
+        Walker walkerEncontrado = new Walker();
         if(!cursor.isAfterLast()){
-            walker.setNome(cursor.getString(cursor.getColumnIndex("nome")));
-            walker.setCodigo(cursor.getInt(cursor.getColumnIndex("CodigoUsuario")));
-            walker.setTelefone(cursor.getString(cursor.getColumnIndex("telefone")));
-            walker.setAnosExperiencia(cursor.getInt(cursor.getColumnIndex("AnosExperiencia")));
+            walkerEncontrado.setCodigo(cursor.getInt(cursor.getColumnIndex("codigo")));
+            walkerEncontrado.setNome(cursor.getString(cursor.getColumnIndex("Nome")));
+            walkerEncontrado.setTelefone(cursor.getString(cursor.getColumnIndex("Telefone")));
+            walkerEncontrado.setAnosExperiencia(cursor.getInt(cursor.getColumnIndex("AnosExperiencia")));
         }
         cursor.close();
-        return walker;
+        return walkerEncontrado;
     }
 
     @SuppressLint("Range")
     @Override
     public List<Walker> findAll() throws SQLException {
         List<Walker> walkers =new ArrayList<>();
-        String sql = "SELECT u.Nome as Nome, u.Telefone as Telefone, w.CodigoUsuario as CodigoUsuario, w.AnosExperiencia as AnosExperiencia" +
+        String sql = "SELECT u.Nome as Nome, u.Telefone as Telefone, w.AnosExperiencia as AnosExperiencia" +
                 " FROM Walker w INNER JOIN Usuario u ON u.Codigo = w.CodigoUsuario";
         Cursor cursor = database.rawQuery(sql, null);
         if(cursor != null){
@@ -90,9 +91,8 @@ public class WalkerDao implements ICRUDDao<Walker>, IWalkerDao, IFindAllDao {
         }
         while(!cursor.isAfterLast()){
             Walker walker = new Walker();
-            walker.setNome(cursor.getString(cursor.getColumnIndex("nome")));
-            walker.setCodigo(cursor.getInt(cursor.getColumnIndex("CodigoUsuario")));
-            walker.setTelefone(cursor.getString(cursor.getColumnIndex("telefone")));
+            walker.setNome(cursor.getString(cursor.getColumnIndex("Nome")));
+            walker.setTelefone(cursor.getString(cursor.getColumnIndex("Telefone")));
             walker.setAnosExperiencia(cursor.getInt(cursor.getColumnIndex("AnosExperiencia")));
 
             walkers.add(walker);
@@ -113,6 +113,7 @@ public class WalkerDao implements ICRUDDao<Walker>, IWalkerDao, IFindAllDao {
 
     private ContentValues getCvWalker(Walker walker){
         ContentValues contentValues = new ContentValues();
+        contentValues.put("CodigoUsuario", walker.getCodigo());
         contentValues.put("AnosExperiencia", walker.getAnosExperiencia());
 
         return contentValues;
