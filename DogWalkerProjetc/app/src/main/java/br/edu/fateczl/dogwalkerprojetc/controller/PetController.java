@@ -46,11 +46,7 @@ public class PetController implements  IController<Pet>, IControllerFindAll<Pet>
         if(pDao.open() == null){
             pDao.open();
         }
-        pet = pDao.findOne(pet);
-        if(pet.getNome() == null){
-            throw  new NullPointerException("Pet não encontrado");
-        }
-        return pet;
+        return pDao.findOne(pet);
     }
 
     @Override

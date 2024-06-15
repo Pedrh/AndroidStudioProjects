@@ -81,10 +81,14 @@ public class PetFragment extends Fragment {
         try{
             //So permite a operação de um pet caso o dono esteja logado
             Dono dono = encontraDono();
-
-            Pet pet = montaPet(dono);
-            pCont.insert(pet);
-            Toast.makeText(view.getContext(), "Pet inserido com sucesso", Toast.LENGTH_LONG).show();
+            if(dono.getNome() == null){
+                Toast.makeText(view.getContext(), "Necessário cadastrar dono antes", Toast.LENGTH_LONG).show();
+                limpaCampos();
+            } else{
+                Pet pet = montaPet(dono);
+                pCont.insert(pet);
+                Toast.makeText(view.getContext(), "Pet inserido com sucesso", Toast.LENGTH_LONG).show();
+            }
         } catch (SQLException e) {
             Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
@@ -95,10 +99,14 @@ public class PetFragment extends Fragment {
         try{
             //So permite a operação de um pet caso o dono esteja logado
             Dono dono = encontraDono();
-
-            Pet pet = montaPet(dono);
-            pCont.update(pet);
-            Toast.makeText(view.getContext(), "Pet atualizado com sucesso", Toast.LENGTH_LONG).show();
+            if(dono.getNome() == null){
+                Toast.makeText(view.getContext(), "Necessário cadastrar dono antes", Toast.LENGTH_LONG).show();
+                limpaCampos();
+            } else{
+                Pet pet = montaPet(dono);
+                pCont.update(pet);
+                Toast.makeText(view.getContext(), "Pet atualizado com sucesso", Toast.LENGTH_LONG).show();
+            }
         } catch (SQLException e) {
             Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
@@ -109,10 +117,14 @@ public class PetFragment extends Fragment {
         try{
             //So permite a operação de um pet caso o dono esteja logado
             Dono dono = encontraDono();
-
-            Pet pet = montaPet(dono);
-            pCont.delete(pet);
-            Toast.makeText(view.getContext(), "Pet deletado com sucesso", Toast.LENGTH_LONG).show();
+            if(dono.getNome() == null){
+                Toast.makeText(view.getContext(), "Necessário cadastrar dono antes", Toast.LENGTH_LONG).show();
+                limpaCampos();
+            } else{
+                Pet pet = montaPet(dono);
+                pCont.delete(pet);
+                Toast.makeText(view.getContext(), "Pet deletado com sucesso", Toast.LENGTH_LONG).show();
+            }
         } catch (SQLException e) {
             Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
@@ -123,29 +135,40 @@ public class PetFragment extends Fragment {
         try{
             //So permite a operação de um pet caso o dono esteja logado
             Dono dono = encontraDono();
+            if(dono.getNome() == null){
+                Toast.makeText(view.getContext(), "Necessário cadastrar dono antes", Toast.LENGTH_LONG).show();
+                limpaCampos();
+            } else{
+                Pet pet = montaPet(dono);
+                pet = pCont.findOne(pet);
+                if(pet.getNome() == null){
+                    Toast.makeText(view.getContext(), "Pet não encontrado", Toast.LENGTH_LONG).show();
+                    limpaCampos();
+                } else{
+                    preencheCampos(pet);
+                }
 
-            Pet pet = montaPet(dono);
-            pet = pCont.findOne(pet);
-            preencheCampos(pet);
-
+            }
         } catch (SQLException e) {
             Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-            limpaCampos();
         }
     }
 
     private void acaoFindAll() {
         try{
-            //So permite a operação de um pet caso o dono esteja logado. Para este caso, é apenas uma checagem.
-            encontraDono();
-
-            List<Pet> pets = pCont.findAll();
-            StringBuffer buffer = new StringBuffer();
-            for(Pet p:pets){
-                buffer.append(p.toString() + "\n");
+            //So permite a operação de um pet caso o dono esteja logado.
+            Dono dono = encontraDono();
+            if(dono.getNome() == null){
+                Toast.makeText(view.getContext(), "Necessário cadastrar dono antes", Toast.LENGTH_LONG).show();
+                limpaCampos();
+            } else{
+                List<Pet> pets = pCont.findAll();
+                StringBuffer buffer = new StringBuffer();
+                for(Pet p:pets){
+                    buffer.append(p.toString() + "\n");
+                }
+                tvFindAllPet.setText(buffer.toString());
             }
-            tvFindAllPet.setText(buffer.toString());
-
         } catch (SQLException e) {
             Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
@@ -242,7 +265,7 @@ public class PetFragment extends Fragment {
         Dono dono = new Dono();
         try{
             dono.setCodigo(1);
-            dCont.findOne(dono);
+            dono = dCont.findOne(dono);
         } catch (SQLException e) {
             Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }

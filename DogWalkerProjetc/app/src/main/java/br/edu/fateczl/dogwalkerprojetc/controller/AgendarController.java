@@ -45,11 +45,7 @@ public class AgendarController implements IController<Agendar> {
         if(aDao.open() == null){
             aDao.open();
         }
-        agendar = aDao.findOne(agendar);
-        if(agendar.getDataEncontro() == null){
-            throw  new NullPointerException("Passeio não encontrado");
-        }
-        return agendar;
+        return aDao.findOne(agendar);
     }
 
 

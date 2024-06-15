@@ -62,8 +62,8 @@ public class DonoDao implements ICRUDDao<Dono>, IDonoDao {
     @SuppressLint("Range")
     @Override
     public Dono findOne(Dono dono) throws SQLException  {
-        String sql = "SELECT u.nome as nome, u.telefone as telefone, d.cep as cep, d.email as email FROM Dono d INNER JOIN Usuario u" +
-                " ON u.codigo = d.CodigoUsuario AND d.CodigoUsuario = 1";
+        String sql = "SELECT u.nome as nome, u.telefone as telefone, d.cep as cep, d.email as email FROM Dono d INNER JOIN Usuario u " +
+                "ON u.codigo = d.CodigoUsuario AND d.CodigoUsuario = 1";
         Cursor cursor = database.rawQuery(sql, null);
         if(cursor != null){
             cursor.moveToNext();

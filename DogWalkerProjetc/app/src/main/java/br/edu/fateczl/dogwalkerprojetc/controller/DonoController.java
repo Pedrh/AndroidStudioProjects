@@ -40,14 +40,10 @@ public class DonoController implements IController<Dono> {
     }
 
     @Override
-    public Dono findOne(Dono dono) throws SQLException, NullPointerException {
+    public Dono findOne(Dono dono) throws SQLException{
         if(dDao.open() == null){
             dDao.open();
         }
-        dono = dDao.findOne(dono);
-        if(dono.getNome() == null){
-            throw  new NullPointerException("Dono não cadastrado");
-        }
-        return dono;
+        return dDao.findOne(dono);
     }
 }

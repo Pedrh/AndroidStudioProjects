@@ -56,12 +56,18 @@ public class DonoFragment extends Fragment {
     }
 
     private void identificarCadastro() {
-        Dono dono = montaDono();
         String msg = "";
-        if(dono.getNome() != null){
-            msg = "Usuário logado";
-        } else{
-            msg = "Usuário não cadastrado";
+        Dono dono = new Dono();
+        try{
+            dono.setCodigo(1);
+            dono = dCont.findOne(dono);
+            if(dono.getNome() != null){
+                msg = "Usuário logado";
+            } else{
+                msg = "Usuário não cadastrado";
+            }
+        } catch (SQLException e) {
+            Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
         tvCadastradoDono.setText(msg);
     }
@@ -101,10 +107,14 @@ public class DonoFragment extends Fragment {
         Dono dono = montaDono();
         try{
             dono = dCont.findOne(dono);
-            preencheCampos(dono);
+            if(dono.getNome() == null){
+                Toast.makeText(view.getContext(), "Dono não cadastrado", Toast.LENGTH_LONG).show();
+                limpaCampos();
+            } else{
+                preencheCampos(dono);
+            }
         } catch (SQLException e) {
             Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-            limpaCampos();
         }
     }
 

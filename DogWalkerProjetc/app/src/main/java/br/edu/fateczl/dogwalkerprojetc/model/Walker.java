@@ -20,6 +20,6 @@ public class Walker extends Usuario{
     @NonNull
     @Override
     public String toString() {
-        return nome  + " - " + telefone + " (Walker a " + anosExperiencia + " anos de experiência)";
+        return nome  + " - " + telefone + " (Walker a " + anosExperiencia + " anos)";
     }
 }
