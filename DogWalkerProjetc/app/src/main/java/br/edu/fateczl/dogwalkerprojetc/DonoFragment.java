@@ -65,6 +65,8 @@ public class DonoFragment extends Fragment {
             dono = dCont.findOne(dono);
             if(dono.getNome() != null){
                 msg = "Usuário logado";
+                btnInsertDono.setEnabled(false);
+                btnInsertDono.setBackgroundResource(R.color.gray);
             } else{
                 msg = "Usuário não cadastrado";
             }
@@ -78,17 +80,16 @@ public class DonoFragment extends Fragment {
         Dono dono = montaDono();
         try{
             if(!tvCadastradoDono.getText().toString().equals("Usuário logado")){
-
                 boolean todosPreenchidos = camposPreenchidos();
                 if (todosPreenchidos) {
                     dCont.insert(dono);
                     Toast.makeText(view.getContext(), "Usuário efetuou cadastro", Toast.LENGTH_LONG).show();
                     tvCadastradoDono.setText("Usuário logado");
+                    btnInsertDono.setEnabled(false);
+                    btnInsertDono.setBackgroundResource(R.color.gray);
                 } else {
                     Toast.makeText(view.getContext(), "Necessário preencher todos os campos", Toast.LENGTH_LONG).show();
                 }
-            } else {
-                acaoUpdate();
             }
         } catch (SQLException e) {
             Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
@@ -100,10 +101,16 @@ public class DonoFragment extends Fragment {
         Dono dono = montaDono();
         try{
             if(!tvCadastradoDono.getText().toString().equals("Usuário logado")){
-               acaoInsert();
+                Toast.makeText(view.getContext(), "Necessário fazer o cadastro primeiro", Toast.LENGTH_LONG).show();
+                limpaCampos();
             } else {
-                dCont.update(dono);
-                Toast.makeText(view.getContext(), "Usuário atualizado com sucesso", Toast.LENGTH_LONG).show();
+                boolean todosPreenchidos = camposPreenchidos();
+                if (todosPreenchidos) {
+                    dCont.update(dono);
+                    Toast.makeText(view.getContext(), "Usuário atualizado com sucesso", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(view.getContext(), "Necessário preencher todos os campos", Toast.LENGTH_LONG).show();
+                }
             }
         } catch (SQLException e) {
             Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
